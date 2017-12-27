@@ -15,9 +15,6 @@ import org.junit.Test;
 
 import java.util.regex.Pattern;
 
-/**
- * Created by zhoujine on 2016/6/12.
- */
 public class WifiStress extends LetvTestCase {
     int count =0;
 
