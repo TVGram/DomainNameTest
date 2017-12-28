@@ -8,7 +8,7 @@ import com.letv.common.CaseName;
 import com.letv.common.LetvTestCase;
 
 import org.junit.Test;
-public class DesktopSwitchStress extends LetvTestCase{
+public class DesktopSwitch extends LetvTestCase{
 
     @Test
     @CaseName("各个桌面切换")
