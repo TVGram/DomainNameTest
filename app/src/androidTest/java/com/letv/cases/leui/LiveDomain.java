@@ -31,7 +31,6 @@ public class LiveDomain extends LetvTestCase{
 
     @Test
     @CaseName("Live桌面频道切换")
-
     public void testSwitchChannel() throws UiObjectNotFoundException, RemoteException {
         addStep("进入Live");
         gotoHomeScreen("首页");
@@ -85,8 +84,6 @@ public class LiveDomain extends LetvTestCase{
     }
 
 
-
-
     @Test
     @CaseName("Live桌面节目单进行点播")
     public void testProgramme() throws UiObjectNotFoundException, RemoteException {
@@ -117,13 +114,12 @@ public class LiveDomain extends LetvTestCase{
     }
 
 
-
     @Test
-    @CaseName("Live桌面九宫格全屏间切换")
+    @CaseName("Live桌面九宫格进行点播")
     public void testNineGrid() throws UiObjectNotFoundException, RemoteException {
         addStep("切换到live桌面");
         gotoHomeScreen("首页");
-        sleepInt(5);
+        sleepInt(2);
             try {
                 NineGrid();
             } catch (Exception e) {
@@ -134,11 +130,11 @@ public class LiveDomain extends LetvTestCase{
     public void NineGrid()throws UiObjectNotFoundException,RemoteException{
         //遥控器指示按键
         UiObject2 ok_button =waitForObj(By.text("确定"));
-        if (ok_button !=null){
-            verify("not found ok_button",ok_button != null);
-            ok_button.click();
-            ok_button.click();
-            }
+//        if (ok_button !=null){
+//            verify("not found ok_button",ok_button != null);
+//            ok_button.click();
+//            ok_button.click();
+//            }
             addStep("进入九宫格播放页面");
             press_center(1);
             press_left(3);
@@ -160,6 +156,9 @@ public class LiveDomain extends LetvTestCase{
             addStep("返回全屏播放");
             press_back(1);
         }
+
+
+
 
 
 
