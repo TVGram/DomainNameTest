@@ -61,23 +61,14 @@ public class LeSoDomain extends LetvTestCase{
     public void testSearchPoster() throws UiObjectNotFoundException, RemoteException {
         addStep("打开搜索桌面");
         gotoHomeScreen("搜索");
+        press_back(4);
         try {
-            sleepInt(2);
-            addStep("进入乐看搜索");
-            UiObject2 leSearch = waitForObj(By.res(Pattern.compile("com.stv.plugin.search:id/search_box|com.stv.plugin.search:id/search_box_notice")));
-            check("没有找到搜索框", leSearch != null);
-            leSearch.click();
-            sleepInt(2);
-            UiObject2 leSo = phone.findObject(By.pkg(Pattern.compile("com.letv.leso|com.letv.search.plugin|")));
-            check("未进入乐看搜索", leSo != null);
-            sleepInt(5);
-            UiObject2 update = phone.findObject(By.text("马上体验"));
-            if (update != null) {
-                update.click();
-                sleep(70);
-                press_up(1);
-                press_center(1);
+            for(int i =5;i<14;i++){
+                press_down(i);
+                press_right(4);
+                press_back(3);
             }
+            press_down(1);
         } catch (Exception e) {
             failCount(count, getIntParams("Loop"), e.getMessage());
         }
