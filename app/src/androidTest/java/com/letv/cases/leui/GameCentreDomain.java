@@ -76,6 +76,8 @@ public class GameCentreDomain extends LetvTestCase{
         gotoHomeScreen("游戏");
         press_down(1);
         press_right(1);
-        press_center(1);
+        UiObject2 game=waitForObj(By.res("com.stv.plugin.game:id/item_name").text("宝贝童话TV版"));
+        game.click();
+        game.click();
     }
 }
