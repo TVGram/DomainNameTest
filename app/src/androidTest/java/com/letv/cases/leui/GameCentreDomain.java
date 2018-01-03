@@ -81,7 +81,6 @@ public class GameCentreDomain extends LetvTestCase{
         UiObject2 downloadgame=waitForObj(By.res("com.letv.tvos.gamecenter:id/download_state").text("立即安装"));
         check("未进入立即下载",download!=null);
         downloadgame.click();
-        downloadgame.click();
         sleepInt(3);
         addStep("打开App详情并安装并打开");
         BySelector download = By.clazz("com.android.packageinstaller:id/ok_button").text(Pattern.compile("安装"));
