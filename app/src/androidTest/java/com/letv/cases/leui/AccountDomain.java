@@ -24,18 +24,6 @@ import java.util.regex.Pattern;
 public class AccountDomain extends LetvTestCase{
     int count = 0;
 
-/*    @Test
-    @CaseName("screen shot")
-    public void testScreenshot() throws UiObjectNotFoundException, RemoteException {
-        screenShot();
-        sleepInt(1);
-    }
-
-    @Override
-    public void tearDown() throws Exception {
-        //   super.tearDown();
-    }*/
-
     @Test
     @CaseName("删除、登录、乐视账号")
     public void testAccountLogin() throws UiObjectNotFoundException, RemoteException {
