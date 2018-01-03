@@ -84,7 +84,7 @@ public class GameCentreDomain extends LetvTestCase{
         downloadgame.click();
         sleepInt(3);
         addStep("打开App详情并安装并打开");
-        BySelector download = By.clazz("android.widget.TextView").text(Pattern.compile("立即安装"));
+        BySelector download = By.clazz("com.android.packageinstaller:id/ok_button").text(Pattern.compile("安装"));
         UiObject2 check1 = phone.findObject(download);
         if (check1 != null) {
             check("安装按钮不存在", check1 != null);
@@ -99,6 +99,11 @@ public class GameCentreDomain extends LetvTestCase{
             sleepInt(2);
         }
         sleepInt(10);
+
+        UiObject2 done_button= waitForObj(By.res("com.android.packageinstaller:id/done_button").text("完成"));
+        check("未完成",done_button!=null);
+        done_button.click();
+        done_button.click();
         addStep("退出游戏App");
         press_back(3);
     }
