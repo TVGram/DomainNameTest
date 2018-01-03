@@ -1,0 +1,30 @@
+Index: app/app.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/app.iml	(revision 751dcf77890a195dce80a7749e5e4c0d57d11453)
++++ app/app.iml	(revision )
+@@ -90,6 +90,7 @@
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
+       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
+       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
++      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
+       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
+     </content>
+     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
+\ No newline at end of file
+Index: app/src/androidTest/java/com/letv/cases/leui/GameCentreDomain.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/androidTest/java/com/letv/cases/leui/GameCentreDomain.java	(revision 751dcf77890a195dce80a7749e5e4c0d57d11453)
++++ app/src/androidTest/java/com/letv/cases/leui/GameCentreDomain.java	(revision )
+@@ -101,6 +101,5 @@
+         sleepInt(10);
+         addStep("退出游戏App");
+         press_back(3);
+-
+     }
+ }
