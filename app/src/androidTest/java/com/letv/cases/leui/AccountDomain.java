@@ -21,7 +21,7 @@ import org.junit.Test;
 
 import java.util.regex.Pattern;
 
-public class Account extends LetvTestCase{
+public class AccountDomain extends LetvTestCase{
     int count = 0;
 
     @Test
