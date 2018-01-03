@@ -87,16 +87,15 @@ public class GameCentreDomain extends LetvTestCase{
         if (download != null) {
             check("安装按钮不存在", download != null);
             clickAndWaitForNewWindow(download);
-            UiObject2 check2 = waitForObj(openApp, 30000L);
-            check("网络不稳定安装未成功", check2 != null);
-            check2.click();
+//            UiObject2 check2 = waitForObj(openApp, 30000L);
+//            check("网络不稳定安装未成功", check2 != null);
+//            check2.click();
         } else {
-            UiObject2 check2 = waitForObj(openApp);
-            check2.click();
+//            UiObject2 check2 = waitForObj(openApp);
+//            check2.click();
             sleepInt(2);
         }
-        sleepInt(10);
-
+//        sleepInt(10);
         UiObject2 done_button= waitForObj(By.res("com.android.packageinstaller:id/done_button").text("完成"));
         check("未完成",done_button!=null);
         done_button.click();
