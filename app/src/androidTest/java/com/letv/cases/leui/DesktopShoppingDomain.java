@@ -16,7 +16,7 @@ import org.junit.Test;
 import java.util.regex.Pattern;
 
 
-public class DesktopShoppingStress extends LetvTestCase{
+public class DesktopShoppingDomain extends LetvTestCase{
     int count;
 
 

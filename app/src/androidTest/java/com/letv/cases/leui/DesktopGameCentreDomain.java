@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 
-public class GameCentreDomain extends LetvTestCase{
+public class DesktopGameCentreDomain extends LetvTestCase{
     int count=0;
 
 
