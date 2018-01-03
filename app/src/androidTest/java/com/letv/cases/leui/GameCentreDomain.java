@@ -78,5 +78,29 @@ public class GameCentreDomain extends LetvTestCase{
         UiObject2 game=waitForObj(By.res("com.stv.plugin.game:id/item_name").text("宝贝童话TV版"));
         game.click();
         game.click();
+        UiObject2 downloadgame=waitForObj(By.res("com.letv.tvos.gamecenter:id/download_state").text("立即安装"));
+        check("未进入立即下载",download!=null);
+        downloadgame.click();
+        downloadgame.click();
+        sleepInt(3);
+        addStep("打开App详情并安装并打开");
+        BySelector download = By.clazz("android.widget.TextView").text(Pattern.compile("立即安装"));
+        UiObject2 check1 = phone.findObject(download);
+        if (check1 != null) {
+            check("安装按钮不存在", check1 != null);
+            clickAndWaitForNewWindow(check1);
+            UiObject2 check2 = waitForObj(openApp, 30000L);
+            check("网络不稳定安装未成功", check2 != null);
+            check2.click();
+        } else {
+            UiObject2 check2 = waitForObj(openApp);
+//            check("打开按钮不存在", check2 != null);
+            check2.click();
+            sleepInt(2);
+        }
+        sleepInt(10);
+        addStep("退出游戏App");
+        press_back(3);
+
     }
 }
