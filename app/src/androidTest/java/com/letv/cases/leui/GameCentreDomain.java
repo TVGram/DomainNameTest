@@ -102,5 +102,6 @@ public class GameCentreDomain extends LetvTestCase{
         done_button.click();
         addStep("退出游戏App");
         press_back(3);
+
     }
 }
