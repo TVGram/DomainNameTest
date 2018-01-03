@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * Created by Wuhaotian on 2017/3/9.
  */
 
-public class ThemesStress extends LetvTestCase{
+public class ThemesDomian extends LetvTestCase{
     int count=0;
 
     @Test
