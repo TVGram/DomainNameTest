@@ -17,7 +17,6 @@ public class AppName {
     public static final String Channel = "Channel|Channel";
     public static final String Input = "Input|Input";
     public static final String LeAccount = "乐视帐号|会员帐号|LeAccount|超级电视帐号";
-    public static final String Browser = "浏览器|Browser";
     public static final String Filemanager = "文件管理|Filemanager";
     public static final String Feedback = "问题反馈|Feedback";
     public static final String Camera = "电视乐拍|Camera";
