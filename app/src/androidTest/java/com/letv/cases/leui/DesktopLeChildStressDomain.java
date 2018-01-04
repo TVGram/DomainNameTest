@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
  * Created by pc7 on 7/28/17.
  */
 
-public class LeChildStress extends LetvTestCase {
+public class DesktopLeChildStressDomain extends LetvTestCase {
     int count = 0;
     @Test
     @CaseName("儿童桌面分类视频随机播放")
@@ -32,7 +32,7 @@ public class LeChildStress extends LetvTestCase {
         press_back(1);
         press_down(8);
         int left=0,right=0,down=0,up=0;
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
+        for (int Loop = 0; Loop < 1; Loop++) {
             try{
                 addStep(".............looper : " + Loop);
                 if (Loop % 2 == 0) {

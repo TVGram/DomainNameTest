@@ -23,7 +23,7 @@ import java.util.regex.Pattern;
  * Created by wangyaxiu on 2016/12/23.
  */
 
-public class WeatherDomian extends  LetvTestCase{
+public class APPWeatherDomian extends  LetvTestCase{
    int count = 0;
 
     @Test

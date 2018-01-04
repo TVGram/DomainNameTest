@@ -14,7 +14,7 @@ import org.junit.Test;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class VodPlayStress extends LetvTestCase {
+public class DesktopVodPlayDomain extends LetvTestCase {
     int count=0;
     @Override
     public void setUp() throws Exception {
@@ -48,8 +48,6 @@ public class VodPlayStress extends LetvTestCase {
     @CaseName("乐见(视频)桌面播放视频")
     public void testTVPlay() throws UiObjectNotFoundException , RemoteException {
         gotoHomeScreen("乐见");
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
-            addStep(".............looper : " + Loop);
             try {
                 TVPlay();
             }catch (Exception e){
@@ -70,18 +68,16 @@ public class VodPlayStress extends LetvTestCase {
                     junit.framework.Assert.fail(re.getMessage());
                 }
             }
-        }
         press_back(3);
     }
-
     public void TVPlay() throws UiObjectNotFoundException , RemoteException {
         addStep("在乐见(视频)桌面选择任意海报，进入");
         updateAPP();
         press_down(1);
-        UiObject2 poster1=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_small_3"));
-        check("视频桌面没有找到海报", poster1 != null);
-        poster1.click();
-        poster1.click();
+        UiObject2 poster_small_3=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_small_3"));
+        check("视频桌面没有找到海报", poster_small_3 != null);
+        poster_small_3.click();
+        poster_small_3.click();
         sleepInt(2);
         addStep("打开视频详情");
         UiObject2 play1 = waitForObj(By.text(Pattern.compile("第.*集|.*播放|预告")));
@@ -89,23 +85,57 @@ public class VodPlayStress extends LetvTestCase {
             check("Not open video detail", play1 != null);
             play1.click();
         }
-        addStep("播放视频，播放5分钟,并调节声音");
-        sleepInt(80);
+        sleepInt(10);
         checkAccountLogin();
         sleepInt(5);
-        sleepInt(24);
-        press_vol_up(10);
-        press_vol_down(10);
-        sleepInt(2);
         addStep("返回点播桌面");
         exitApp();
         sleepInt(2);
         press_back(3);
         sleepInt(1);
+
+
+        addStep("进入乐见播放记录");
         UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("视频|乐见")).selected(true));
         UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("视频|乐见")).focused(true));
         verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        press_down(2);
+        UiObject2 poster_no_title_1=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_no_title_1"));
+        check("未进入乐见播放记录",poster_no_title_1!=null);
+        poster_no_title_1.click();
+        poster_no_title_1.click();
+        sleepInt(2);
+        press_back(3);
+
+        addStep("进入乐见搜索");
+        press_down(2);
+        UiObject2 poster_no_title_2=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_no_title_2"));
+        check("未进乐见入搜索",poster_no_title_2!=null);
+        poster_no_title_2.click();
+        poster_no_title_2.click();
+        sleepInt(2);
+        press_back(3);
+
+        addStep("进入乐见内容分类");
+        press_down(2);
+        UiObject2 poster_no_title_3=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_no_title_3"));
+        check("未进入乐见内容分类",poster_no_title_3!=null);
+        poster_no_title_3.click();
+        poster_no_title_3.click();
+        sleepInt(2);
+        press_back(3);
+
     }
+
+
+
+
+
+
+
+
+
+
 
     public void initClarity() throws UiObjectNotFoundException , RemoteException {
         gotoHomeScreen("视频|乐见");
@@ -169,201 +199,6 @@ public class VodPlayStress extends LetvTestCase {
         int num = getNumber(strPlayNo);
         press_center(1);
     }
-
-
-
-    @Test
-    @CaseName("乐见(视频)桌面进入搜索播放视频，切换视频清晰度或画面比例")
-    public void testChClarity() throws UiObjectNotFoundException , RemoteException {
-        initClarity();
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
-            System.out.println(".............looper : " + Loop);
-            try {
-                ChClarity();
-            }catch (Exception e){
-                try {
-                    count ++;
-                    failCount(count, getIntParams("Loop"), e.getMessage());
-                    initClarity();
-                    ChClarity();
-                }catch (RuntimeException re){
-                    screenShot();
-                    junit.framework.Assert.fail(re.getMessage());
-                }
-            }
-        }
-        addStep("退出播放返回桌面");
-        exitApp();
-        press_back(3);
-    }
-
-    public void ChClarity() throws UiObjectNotFoundException , RemoteException {
-        sleepInt(230);
-        checkAccountLogin();
-        for (int i=0; i<5; i++)
-        {
-            addStep("视频播放中，按菜单键，调出菜单列表，选择视频任意清晰度，按确定键");
-            press_menu(1);
-            UiObject2 chclar = waitForObj(By.clazz("android.widget.HorizontalScrollView"));
-            check("没有显示清晰度和比例菜单", chclar != null);
-            press_left(4);
-            press_right(1);
-            UiObject2 chclar1 = phone.findObject(By.clazz("android.widget.HorizontalScrollView")).getChildren().get(0).getChildren().get(1);
-            check("没有选中清晰度列表", chclar1.hasObject(By.selected(true)));
-            press_up(1);
-            press_center(1);
-            sleepInt(15);
-        }
-
-
-        int boundSize=0;
-        for (int i=0; i<2; i++)
-        {
-            addStep("视频播放中，按菜单键，调出菜单列表，选择视频任意画面比例，按确定键");
-            UiObject2 view = phone.findObject(By.clazz("android.view.View"));
-            String viewBound = view.getVisibleBounds().toString();
-            System.out.println(viewBound);
-            press_menu(1);
-            sleepInt(1);
-            press_left(4);
-            press_right(2);
-            UiObject2 chclar = phone.findObject(By.clazz("android.widget.HorizontalScrollView")).getChildren().get(0).getChildren().get(2);
-            check("没有显示清晰度和比例菜单", chclar.hasObject(By.selected(true)));
-            press_down(1);
-            press_center(1);
-            sleepInt(2);
-            UiObject2 view1 = phone.findObject(By.clazz("android.view.View"));
-            String viewBound_aft = view1.getVisibleBounds().toString();
-            System.out.println(viewBound_aft);
-            if(!viewBound_aft.equals(viewBound))boundSize++;
-            System.out.println(boundSize);
-        }
-        check("切换比例设置不成功", boundSize > 0);
-
-        addStep("回到初始画面比例");
-        press_menu(1);
-        press_up(2);
-        press_center(1);
-    }
-
-    @Test
-    @CaseName("乐见(视频)桌面进入搜索播放视频，切换集数")
-    public void testChPay() throws UiObjectNotFoundException , RemoteException {
-        gotoHomeScreen("视频|乐见");
-        sleepInt(5);
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
-            System.out.println(".............looper : " + Loop);
-            try {
-                ChPlay();
-            }catch (Exception e){
-                try {
-                    count ++;
-                    failCount(count, getIntParams("Loop"), e.getMessage());
-                    gotoHomeScreen("视频|乐见");
-                    sleepInt(5);
-                    ChPlay();
-                }catch (RuntimeException re){
-                    screenShot();
-                    junit.framework.Assert.fail(re.getMessage());
-                }
-            }
-        }
-    }
-
-    public void ChPlay() throws UiObjectNotFoundException , RemoteException {
-        addStep("进入视频桌面的搜索");
-        UiObject2 search1 = waitForObj(By.res("com.stv.plugin.video:id/poster_no_title_2"));
-        UiObject2 search2 = waitForObj(By.res("com.stv.plugin.video:id/poster_no_title_2"));
-        check("没有找到乐见桌面的搜索框",search1!=null||search2!=null);
-        if(callShell("getprop ro.product.uitype").contains("cibn")){
-            search2.click();
-            search2.click();
-        }else {
-            search1.click();
-            search1.click();
-        }
-        sleepInt(2);
-        UiObject2 leSo = waitForObj(By.pkg("com.letv.leso"));
-        check("未进入乐看搜索", leSo != null);
-        addStep("搜索WMNCQ，得到电视剧武媚娘传奇");
-        // 首拼音搜索 武媚娘传奇
-        UiObject2 W = phone.findObject(By.clazz("android.widget.TextView").text("W"));
-        UiObject2 M = phone.findObject(By.clazz("android.widget.TextView").text("M"));
-        UiObject2 N = phone.findObject(By.clazz("android.widget.TextView").text("N"));
-        UiObject2 C = phone.findObject(By.clazz("android.widget.TextView").text("C"));
-        UiObject2 Q = phone.findObject(By.clazz("android.widget.TextView").text("Q"));
-        W.click();W.click();M.click();M.click();N.click();N.click();C.click();C.click();Q.click();Q.click();
-        sleepInt(1);
-
-        addStep("进行播放视频，播放5分钟");
-        UiObject2 playSets = waitForObj(By.clazz("android.widget.TextView").text("武媚娘传奇"));
-        playSets.click();
-        press_right(1);
-        press_center(2);
-
-        sleepInt(2);
-        UiObject2 playDetail = waitForObj(By.clazz("android.widget.TextView").text("详情"));
-        check("未进入详情页", playDetail!=null);
-        UiObject2 playNo = waitForObj(By.text(Pattern.compile("第.*集|播放")));
-        String strPlayNo = playNo.getText();
-        int num = getNumber(strPlayNo);
-        press_center(1);
-        sleepInt(230);
-//        sleepInt(60);
-        checkAccountLogin();
-        addStep("按向下键切集");
-        press_down(1);
-        sleepInt(1);
-        if (num >= 60) {
-            addStep("向左切三集");
-            press_left(3);
-            press_center(1);
-            sleepInt(15);
-            press_back(1);
-            UiObject2 exitPlay = null;
-            for (int a=0;a<3;a++){
-                exitPlay = waitForObj(By.text("退出播放"));
-                if (exitPlay!=null){
-                    break;
-                }
-                press_back(1);
-            }
-            check("没有找到退出播放按钮", exitPlay!=null);
-            exitPlay.click();
-            sleepInt(2);
-            check("未回到详情页", playDetail!=null);
-            String strPlayNoAft = playNo.getText();
-            addStep("从" + strPlayNo + "切换到了" + strPlayNoAft);
-            int numAft = getNumber(strPlayNoAft);
-//            check("切换集数和实际不符", numAft - num == -3);
-        } else {
-            addStep("向右切三集");
-            press_right(3);
-            press_center(1);
-            sleepInt(15);
-            press_back(1);
-            UiObject2 exitPlay = null;
-            for (int a=0;a<3;a++){
-                exitPlay = waitForObj(By.text("退出播放"));
-                if (exitPlay!=null){
-                    break;
-                }
-                press_back(1);
-            }
-            check("没有找到退出播放按钮", exitPlay!=null);
-            exitPlay.click();
-            sleepInt(2);
-            check("未回到详情页", playDetail != null);
-            String strPlayNoAft = playNo.getText();
-            addStep("从" + strPlayNo + "切换到了" + strPlayNoAft);
-            int numAft = getNumber(strPlayNoAft);
-            check("切换集数和实际不符", numAft - num == 3);
-        }
-        press_back(3);
-        sleepInt(1);
-        check("没有返回视频桌面", phone.getCurrentPackageName().equals(PACKAGE_HOME));
-    }
-
     //截取字符串中的数字
     private int getNumber(String content) {
         Pattern pattern = Pattern.compile("\\d+");

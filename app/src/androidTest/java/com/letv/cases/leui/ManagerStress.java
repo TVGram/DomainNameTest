@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import java.util.regex.Pattern;
 
-public class DeskManagerStress extends LetvTestCase{
+public class ManagerStress extends LetvTestCase{
     int count=0;
     @After
     public void tearDown(){

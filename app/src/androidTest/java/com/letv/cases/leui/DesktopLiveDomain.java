@@ -56,8 +56,6 @@ public class DesktopLiveDomain extends LetvTestCase{
             addStep("播放10s");
             sleepInt(10);
             press_back(1);
-
-
             addStep("通过数字小键盘换台");
             press_keyevent(1,KEY_NUM0);
             sleepInt(3);
@@ -89,12 +87,6 @@ public class DesktopLiveDomain extends LetvTestCase{
     public void testProgramme() throws UiObjectNotFoundException, RemoteException {
         addStep("进入Live");
         gotoHomeScreen("首页");
-//        UiObject2 ok_button = waitForObj(By.text("确定"));
-//        if (ok_button != null) {
-//            verify("not found ok_button",ok_button != null);
-//            ok_button.click();
-//            ok_button.click();
-//        }
         sleepInt(6);
         press_down(1);
         sleepInt(2);

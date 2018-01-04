@@ -16,7 +16,7 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 
-public class DesktopStress extends LetvTestCase {
+public class topStress extends LetvTestCase {
 
     @Test
     @CaseName("桌面管理")

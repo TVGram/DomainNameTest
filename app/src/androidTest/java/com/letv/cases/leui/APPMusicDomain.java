@@ -13,7 +13,7 @@ import com.letv.common.LetvTestCase;
 
 import org.junit.Test;
 
-public class MusicStress extends LetvTestCase {
+public class APPMusicDomain extends LetvTestCase {
     int count=0;
 
     @Test
@@ -22,8 +22,6 @@ public class MusicStress extends LetvTestCase {
         addStep("打开媒体中心");
         launchApp(AppName.Music,IntentConstants.Music);
         sleepInt(10);
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
-            System.out.println(".............looper : " + Loop);
             try {
                 PlayMusic();
             }catch (Exception e){
@@ -39,9 +37,9 @@ public class MusicStress extends LetvTestCase {
                     junit.framework.Assert.fail(re.getMessage());
                 }
             }
-        }
-
     }
+
+
     public void PlayMusic() throws UiObjectNotFoundException, RemoteException {
         addStep("播放音频文件50s");
         press_center(1);

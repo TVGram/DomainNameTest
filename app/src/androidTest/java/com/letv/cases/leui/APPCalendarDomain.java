@@ -26,13 +26,13 @@ import java.util.Calendar;
 
 import java.text.SimpleDateFormat;
 
-public class CalendarStress extends LetvTestCase{
+public class APPCalendarDomain extends LetvTestCase{
     int count = 0;
 
     @Test
     @CaseName("多次进入日历应用，查看日历界面显示")
     public void testEntryCalendar() throws UiObjectNotFoundException, RemoteException {
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
+        for (int Loop = 0; Loop < 2; Loop++) {
             try{
                 EntryCalendar();
             }catch (Exception e){
