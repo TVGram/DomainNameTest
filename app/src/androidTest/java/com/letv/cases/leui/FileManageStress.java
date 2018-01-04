@@ -76,6 +76,7 @@ public class FileManageStress extends LetvTestCase {
         sleepInt(2);
         press_back(1);
         sleepInt(1);
+
         check("未进入外接存储文件", menuBartext != null);
         try {
             localcopyAAAFolder();
