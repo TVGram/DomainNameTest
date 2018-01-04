@@ -19,7 +19,7 @@ import java.security.spec.ECField;
 import java.util.Random;
 import java.util.regex.Pattern;
 
-public class LiveDomain extends LetvTestCase{
+public class DesktopLiveDomain extends LetvTestCase{
 
     BySelector letvS=By.pkg("com.letv.tv");
     BySelector homePageS = By.text("首页");
