@@ -21,9 +21,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.regex.Pattern;
-/**
- * Created by wangyaxiu on 2016/12/14.
- */
+
 
 public class LeTVStress extends LetvTestCase{
     int count=0;
