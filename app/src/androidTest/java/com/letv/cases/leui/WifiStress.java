@@ -50,6 +50,7 @@ public class WifiStress extends LetvTestCase {
                     break;
                 }
             }
+
             press_center(1);
             sleepInt(1);
             UiObject2 wifi = waitForObj(By.clazz("android.widget.RadioButton").text("无线网络"));
