@@ -69,6 +69,7 @@ public class TvCamera extends LetvTestCase {
             }
         }
 
+
         addStep("退出电视乐拍");
         press_back(2);
 
