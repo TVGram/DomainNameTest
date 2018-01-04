@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * Created by wangyaxiu on 2016/12/14.
  */
 
-public class DesktopLeSoDomain extends LetvTestCase{
+public class DesktopLeSearchDomain extends LetvTestCase{
     int count=0;
     @Override
     public void setUp() throws Exception {

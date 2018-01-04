@@ -34,7 +34,7 @@ public class DesktopGameCentreDomain extends LetvTestCase{
     BySelector openApp = By.clazz("android.widget.TextView").text(Pattern.compile("立即打开|打开|Open"));
 
     @Test
-    @CaseName("进入桌面游戏反复切换画面")
+    @CaseName("进入桌面游戏")
     public void testGameDeskSwitch() throws UiObjectNotFoundException, RemoteException {
         addStep("打开同游戏桌面");
         gotoHomeScreen("游戏");
@@ -56,6 +56,36 @@ public class DesktopGameCentreDomain extends LetvTestCase{
             }
     }
     public void GameDeskSwitch() throws UiObjectNotFoundException, RemoteException {
+        addStep("游戏桌面海报浏览");
+        press_down(3);
+        UiObject2 mygame=waitForObj(By.res("com.stv.plugin.game:id/entrance_1"));
+        check("",mygame!=null);
+        mygame.click();
+        mygame.click();
+        desktop();
+
+        addStep("游戏桌面排行榜");
+        press_down(3);
+        UiObject2 classfisr=waitForObj(By.res("com.stv.plugin.game:id/entrance_2"));
+        classfisr.click();
+        classfisr.click();
+        desktop();
+
+        addStep("游戏桌面游大厅");
+        press_down(3);
+        UiObject2 lobby=waitForObj(By.res("com.stv.plugin.game:id/entrance_3"));
+        lobby.click();
+        lobby.click();
+        desktop();
+
+        addStep("游戏桌面搜索");
+        press_down(3);
+        UiObject2 Search=waitForObj(By.res("com.stv.plugin.game:id/entrance_4"));
+        Search.click();
+        Search.click();
+        desktop();
+
+        addStep("游戏桌面海报浏览");
         String arrGameDeskSwitch[] = {"猜你喜欢","花式抽卡，欧气满满.*","与您一起，见证宝贝的点滴成长", "畅销榜", "大屏格斗更激爽！", "飙升榜","德州麻将斗地主，象棋斗牛赢三张","感受枪林弹雨的超神快感","热门榜","休闲益智"};
         for (int i = 0; i < arrGameDeskSwitch.length; i++) {
             press_back(2);
@@ -70,7 +100,7 @@ public class DesktopGameCentreDomain extends LetvTestCase{
     }
 
     @Test
-    @CaseName("选择任意游戏进行安装下载")
+    @CaseName("选择任意游戏进行安装下载打开")
     public  void testgameapp()throws UiObjectNotFoundException, RemoteException{
         addStep("打开同游戏桌面");
         gotoHomeScreen("游戏");
@@ -79,29 +109,41 @@ public class DesktopGameCentreDomain extends LetvTestCase{
         game.click();
         game.click();
         UiObject2 downloadgame=waitForObj(By.res("com.letv.tvos.gamecenter:id/download_state").text("立即安装"));
-        check("未进入立即下载",download!=null);
-        downloadgame.click();
-        sleepInt(3);
-        addStep("打开App详情并安装并打开");
-        UiObject2 download = waitForObj(By.res("com.android.packageinstaller:id/ok_button").text(Pattern.compile("安装")));
-        if (download != null) {
-            check("安装按钮不存在", download != null);
-            clickAndWaitForNewWindow(download);
+        if(downloadgame != null) {
+            downloadgame.click();
+            sleepInt(3);
+            addStep("打开App详情并安装并打开");
+            UiObject2 download = waitForObj(By.res("com.android.packageinstaller:id/ok_button").text(Pattern.compile("安装")));
+            if (download != null) {
+                check("安装按钮不存在", download != null);
+                clickAndWaitForNewWindow(download);
 //            UiObject2 check2 = waitForObj(openApp, 30000L);
 //            check("网络不稳定安装未成功", check2 != null);
 //            check2.click();
-        } else {
+            } else {
 //            UiObject2 check2 = waitForObj(openApp);
 //            check2.click();
-            sleepInt(2);
-        }
+                sleepInt(2);
+            }
 //        sleepInt(10);
-        UiObject2 done_button= waitForObj(By.res("com.android.packageinstaller:id/done_button").text("完成"));
-        check("未完成",done_button!=null);
-        done_button.click();
-        done_button.click();
-        addStep("退出游戏App");
-        press_back(3);
+            UiObject2 done_button = waitForObj(By.res("com.android.packageinstaller:id/done_button").text("完成"));
+            check("未完成", done_button != null);
+            done_button.click();
+            done_button.click();
+            addStep("退出游戏App");
+            press_back(3);
+        }else {
+        sleepInt(10);
+        press_home(1);
+        }
 
+    }
+
+    public void desktop()throws UiObjectNotFoundException, RemoteException{
+        sleepInt(4);
+        exitApp();
+        UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("游戏")).selected(true));
+        UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("游戏")).focused(true));
+        verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
     }
 }

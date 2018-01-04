@@ -83,7 +83,7 @@ public class DesktopLiveDomain extends LetvTestCase{
 
 
     @Test
-    @CaseName("Live桌面节目单进行点播")
+    @CaseName("Live桌面节目单选择进行点播")
     public void testProgramme() throws UiObjectNotFoundException, RemoteException {
         addStep("进入Live");
         gotoHomeScreen("首页");
@@ -107,7 +107,7 @@ public class DesktopLiveDomain extends LetvTestCase{
 
 
     @Test
-    @CaseName("Live桌面九宫格进行点播")
+    @CaseName("Live桌面九宫格选择进行点播")
     public void testNineGrid() throws UiObjectNotFoundException, RemoteException {
         addStep("切换到live桌面");
         gotoHomeScreen("首页");

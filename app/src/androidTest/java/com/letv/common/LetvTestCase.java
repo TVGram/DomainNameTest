@@ -182,11 +182,11 @@ public class LetvTestCase{
         for(int i=0;i<2;i++){
             press_back(1);
             sleepInt(1);
-            UiObject2 exitApp =phone.findObject(By.text(Pattern.compile("退出|去意已决|狠心退出|直接退出|确定|确认|退出播放|残忍离去|确定")));
+            UiObject2 exitApp =phone.findObject(By.text(Pattern.compile("退出|去意已决|狠心退出|直接退出|确定|确认|退出播放|残忍离去|确定|确认退出")));
             if(exitApp!=null){
                 exitApp.click();
                 sleepInt(1);
-                UiObject2 exitApp1 =phone.findObject(By.text(Pattern.compile("退出|去意已决|狠心退出|直接退出|确定|确认|退出播放|残忍离去|确定")));
+                UiObject2 exitApp1 =phone.findObject(By.text(Pattern.compile("退出|去意已决|狠心退出|直接退出|确定|确认|退出播放|残忍离去|确定|确认退出")));
                 if(exitApp1!=null) {
                     exitApp1.click();
                     sleepInt(1);

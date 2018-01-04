@@ -25,7 +25,6 @@ public class DesktopShoppingDomain extends LetvTestCase{
     @CaseName("进入购物桌面")
     public void testLeShop()throws UiObjectNotFoundException,RemoteException {
         gotoHomeScreen("购物");
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
             try {
                 LeShop();
             } catch (Exception e) {
@@ -39,22 +38,23 @@ public class DesktopShoppingDomain extends LetvTestCase{
                     Assert.fail(re.getMessage());
                 }
             }
-
-        }
     }
     public void LeShop()throws UiObjectNotFoundException,RemoteException{
+
+
         press_back(2);
-        addStep("进入应用购物来回滑动");
+        addStep("进入购物桌面海报浏览");
         press_down(15);
         UiObject2 shoplog=phone.findObject(By.res("com.stv.shopping:id/shopping_recycler_view"));
         check("未在购物桌面滑动",shoplog!=null);
         press_right(1);
         press_up(15);
-
         press_back(2);
         press_down(1);
+        press_back(3);
 
-        addStep("进入个人中心");
+        addStep("进入购物桌面个人中心");
+        press_down(1);
         UiObject2 personCenter=waitForObj(By.res("com.stv.shopping:id/child_view5"));
         check("未进入购物个人中心",personCenter!=null);
         personCenter.click();
@@ -67,130 +67,30 @@ public class DesktopShoppingDomain extends LetvTestCase{
             sleepInt(1);
             AccountLogin();
         }
-        for(int j=0;j<4;j++) {
-            String arr[] = {"订单", "优惠券", "退换货申请", "收货地址"};
-            for (int i = 0; i < arr.length; i++) {
-                UiObject2 personList = phone.findObject(By.text(arr[i]));
-                addStep("进入" + arr[i]);
-                check("未进个人中心列表", personList != null);
-                personList.click();
-                press_right(3);
-                press_left(3);
-                press_down(1);
-            }
-            press_up(2);
-        }
+        press_back(3);
 
-        press_back(2);
-        press_down(1);
-        addStep("进入全部商品");
+
+
+        addStep("进入购物桌面全部商品");
+        press_down(2);
         UiObject2 allShop=waitForObj(By.res("com.stv.shopping:id/child_view4"));
         check("未进入全部商品",allShop!=null);
         allShop.click();
         allShop.click();
         sleepInt(1);
-        String arr[] = {"首页", "家用电器", "个护美妆", "家居百货","食品茶酒","生活服务","母婴玩具","运动户外","女装/男装","文化创意","鞋包配饰"};
-
-        for (int j = 0; j < arr.length; j++) {
-            addStep("进入全部商品进入遍历");
-            UiObject2 allList = phone.findObject(By.text(arr[j]));
-            addStep("进入" + arr[j]);
-            check("未进个人中心列表", allList != null);
-            allList.click();
-            if(j==6){
-                press_right(6);
-                press_left(5);
-            }
-            press_down(5);
-            sleepInt(1);
-            press_back(1);
-            sleepInt(2);
-        }
         press_back(3);
-    }
 
-    @Test
-    @CaseName("进入搜索商品购买、加入购物车、删除")
-    public void testSeekShop()throws UiObjectNotFoundException,RemoteException{
-        gotoHomeScreen("购物");
-        addStep("进入桌面购物");
-        for (int Loop=0;Loop<getIntParams("Loop");Loop++){
-            try {
-                SeekShop();
-            }catch (Exception e){
-                try {
-                    count++;
-                    failCount(count,getIntParams("Loop"),e.getMessage());
-                    gotoHomeScreen("购物");
-                    SeekShop();
-                }catch (RuntimeException re){
-                    screenShot();
-                    Assert.fail(re.getMessage());
-                }
-            }
-        }
+        addStep("进入购物桌面搜索");
+        press_down(2);
+        UiObject2 Search=waitForObj(By.res("com.stv.shopping:id/child_view3"));
+        check("未进入全部商品",Search!=null);
+        Search.click();
+        Search.click();
+        sleepInt(1);
+        press_back(3);
 
     }
-    public void SeekShop()throws UiObjectNotFoundException,RemoteException{
-        press_back(2);
-        press_down(3);
-        UiObject2 seekShop=waitForObj(By.res("com.stv.shopping:id/child_view3"));
-        seekShop.click();
-        seekShop.click();
-        sleepInt(2);
-        addStep("进入购物搜索商品");
-        UiObject2 seekshopin=waitForObj(By.res("com.stv.shopping:id/searchboard_left_panel")).findObject(By.res("com.stv.shopping:id/search_edit_tips_tv"));
-        check("未进入购物搜索输入",seekshopin!=null);
-        UiObject2 X = phone.findObject(By.clazz("android.widget.TextView").text("X"));
-        UiObject2 H = phone.findObject(By.clazz("android.widget.TextView").text("H"));
-        UiObject2 L = phone.findObject(By.clazz("android.widget.TextView").text("L"));
-        UiObject2 J = phone.findObject(By.clazz("android.widget.TextView").text("J"));
-        X.click();X.click();H.click();H.click();L.click();L.click();J.click();J.click();
-        sleepInt(3);
-        UiObject2 xhlj=waitForObj(By.text("西湖龙井"));
-        xhlj.click();
-        xhlj.click();
-        sleepInt(3);
-        UiObject2 shopParticulars=phone.findObject(By.text("商品详情"));
-        check("未进入商品详情中",shopParticulars!=null);
-        addStep("选择商品购买");
-        UiObject2 nowbuy=waitForObj(By.text("立即购买"));
-        nowbuy.click();
-        sleepInt(2);
-        addStep("商品提交订单");
-        UiObject2 submitOrder=waitForObj(By.text("提交订单"));
-        check("未进入提交订单",submitOrder!=null);
-        submitOrder.click();
-        submitOrder.click();
-        press_back(1);
-        press_back(1);
-        addStep("加入购物车里");
-        UiObject2 addBuyCar=waitForObj(By.text("加入购物车"));
-        check("未加入购物车",addBuyCar!=null);
-        addBuyCar.click();
-        addBuyCar.click();
-        sleepInt(2);
-        press_right(1);
-        UiObject2 rightMenu=waitForObj(By.res("com.stv.shopping:id/detail_toolbar_ll")).findObject(By.res("com.stv.shopping:id/detail_cart_view"));
-        rightMenu.click();
-        sleepInt(2);
-        UiObject2 shopcar=phone.findObject(By.text("购物车"));
-        check("未进入购物车",shopcar!=null);
 
-        UiObject2 nullshopcar=phone.findObject(By.text("您的购物车暂无商品"));
-        if(nullshopcar!=null){
-            press_back(1);
-        }
-        UiObject2 deleteshop=waitForObj(By.res("com.stv.shopping:id/goods_item_rl")).findObject(By.res("com.stv.shopping:id/delete_button"));
-        deleteshop.click();
-        sleepInt(4);
-        addStep("删除商品");
-        UiObject2 delete=waitForObj(By.text("删除"));
-        check("未弹出删除按钮",delete !=null);
-        delete.click();
-        sleepInt(3);
-        press_back(5);
-    }
 
 
     public void AccountLogin() throws UiObjectNotFoundException,RemoteException{

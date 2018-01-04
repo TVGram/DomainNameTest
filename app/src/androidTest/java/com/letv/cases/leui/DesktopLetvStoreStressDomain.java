@@ -22,7 +22,7 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
     int count=0;
 
     @Test
-    @CaseName("LetvStore里下载应用")
+    @CaseName("进入应用商店打开并下载应用")
     public void testDownloadApp() throws UiObjectNotFoundException, RemoteException {
         addStep("打开LetvStore");
         gotoHomeScreen("应用");
@@ -45,8 +45,7 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
 
         press_back(1);
         sleepInt(2);
-        UiObject2 exitok = waitForObj(By.text("退出"));
-        exitok.click();
+        exitApp();
         press_back(4);
     }
     public void DownloadApp() throws UiObjectNotFoundException, RemoteException {
