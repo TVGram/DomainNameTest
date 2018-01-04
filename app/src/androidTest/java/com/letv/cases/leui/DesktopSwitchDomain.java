@@ -21,7 +21,6 @@ public class DesktopSwitchDomain extends LetvTestCase{
             press_left(15);
             addStep("在桌面向右滑动15次");
             press_right(15);
-
         }
     }
 }
