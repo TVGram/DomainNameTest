@@ -19,11 +19,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 
-/**
- * Created by Wuhaotian on 2017/3/9.
- */
 
-public class ThemesStress extends LetvTestCase{
+
+public class ThemesDomian extends LetvTestCase{
     int count=0;
 
     @Test
@@ -32,7 +30,6 @@ public class ThemesStress extends LetvTestCase{
         addStep("切换到应用桌面");
         gotoHomeScreen("应用");
         deskNO();
-        for(int Loop=0;Loop<getIntParams("Loop");Loop++) {
             try {
                 Themes();
             } catch (Exception e) {
@@ -46,7 +43,6 @@ public class ThemesStress extends LetvTestCase{
                     junit.framework.Assert.fail(re.getMessage());
                 }
             }
-        }
         myThemes();
 
     }

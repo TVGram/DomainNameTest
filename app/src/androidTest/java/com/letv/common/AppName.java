@@ -1,9 +1,8 @@
 package com.letv.common;
 
-/**
- * Created by letv on 2015/12/30.
- * Last edit by letv on 15:01 2015/12/30.
- */
+
+
+
 public class AppName {
     public static final String LETVREMOTETEST = "Letv自动化测试";
     public static final String GoogleSearch = "GoogleSearch|GoogleSearch";

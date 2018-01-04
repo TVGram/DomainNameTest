@@ -21,29 +21,14 @@ import org.junit.Test;
 
 import java.util.regex.Pattern;
 
-public class AccountStress extends LetvTestCase{
+public class AccountDomain extends LetvTestCase{
     int count = 0;
-
-/*    @Test
-    @CaseName("screen shot")
-    public void testScreenshot() throws UiObjectNotFoundException, RemoteException {
-        screenShot();
-        sleepInt(1);
-    }
-
-    @Override
-    public void tearDown() throws Exception {
-        //   super.tearDown();
-    }*/
 
     @Test
     @CaseName("删除、登录、乐视账号")
     public void testAccountLogin() throws UiObjectNotFoundException, RemoteException {
 //        SuperTV();
         launchApp(AppName.LeAccount,IntentConstants.LeAccount);
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
-            System.out.println(".............looper : " + Loop);
-            addStep("删除、登录、乐视账号 Loop "+Loop);
             try {
                 if(LetvUI(6.5)){
                     addStep("UI6.5");
@@ -71,7 +56,6 @@ public class AccountStress extends LetvTestCase{
                     screenShot();
                     Assert.fail(re.getMessage());
                 }
-            }
         }
         sleepInt(2);
         launchApp(AppName.LeAccount, IntentConstants.LeAccount);

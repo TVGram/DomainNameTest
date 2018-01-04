@@ -8,7 +8,7 @@ import com.letv.common.CaseName;
 import com.letv.common.LetvTestCase;
 
 import org.junit.Test;
-public class DesktopSwitch extends LetvTestCase{
+public class DesktopSwitchDomain extends LetvTestCase{
 
     @Test
     @CaseName("各个桌面切换")
