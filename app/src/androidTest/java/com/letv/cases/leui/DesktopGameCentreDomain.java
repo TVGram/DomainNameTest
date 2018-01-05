@@ -35,7 +35,7 @@ public class DesktopGameCentreDomain extends LetvTestCase{
 
     @Test
     @CaseName("进入桌面游戏")
-    public void testGameDeskSwitch() throws UiObjectNotFoundException, RemoteException {
+    public void testDesktopGameDeskSwitch() throws UiObjectNotFoundException, RemoteException {
         addStep("打开同游戏桌面");
         gotoHomeScreen("游戏");
         press_down(1);
@@ -101,7 +101,7 @@ public class DesktopGameCentreDomain extends LetvTestCase{
 
     @Test
     @CaseName("选择任意游戏进行安装下载打开")
-    public  void testgameapp()throws UiObjectNotFoundException, RemoteException{
+    public  void testDesktopgameapp()throws UiObjectNotFoundException, RemoteException{
         addStep("打开同游戏桌面");
         gotoHomeScreen("游戏");
         press_down(1);

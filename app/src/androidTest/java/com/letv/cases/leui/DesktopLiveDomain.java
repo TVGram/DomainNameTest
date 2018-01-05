@@ -31,7 +31,7 @@ public class DesktopLiveDomain extends LetvTestCase{
 
     @Test
     @CaseName("Live桌面频道切换")
-    public void testSwitchChannel() throws UiObjectNotFoundException, RemoteException {
+    public void testDesktopLiveSwitchChannel() throws UiObjectNotFoundException, RemoteException {
         addStep("进入Live");
         gotoHomeScreen("首页");
         UiObject2 ok_button = waitForObj(By.text("确定"));
@@ -84,7 +84,7 @@ public class DesktopLiveDomain extends LetvTestCase{
 
     @Test
     @CaseName("Live桌面节目单选择进行点播")
-    public void testProgramme() throws UiObjectNotFoundException, RemoteException {
+    public void testDesktopLiveProgramme() throws UiObjectNotFoundException, RemoteException {
         addStep("进入Live");
         gotoHomeScreen("首页");
         sleepInt(6);
@@ -108,7 +108,7 @@ public class DesktopLiveDomain extends LetvTestCase{
 
     @Test
     @CaseName("Live桌面九宫格选择进行点播")
-    public void testNineGrid() throws UiObjectNotFoundException, RemoteException {
+    public void testDesktopLiveNineGrid() throws UiObjectNotFoundException, RemoteException {
         addStep("切换到live桌面");
         gotoHomeScreen("首页");
         sleepInt(2);

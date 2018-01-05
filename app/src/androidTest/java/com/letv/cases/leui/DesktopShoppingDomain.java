@@ -23,7 +23,7 @@ public class DesktopShoppingDomain extends LetvTestCase{
 
     @Test
     @CaseName("进入购物桌面")
-    public void testLeShop()throws UiObjectNotFoundException,RemoteException {
+    public void testDesktopLeShop()throws UiObjectNotFoundException,RemoteException {
         gotoHomeScreen("购物");
             try {
                 LeShop();

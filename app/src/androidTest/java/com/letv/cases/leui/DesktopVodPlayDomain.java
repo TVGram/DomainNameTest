@@ -46,7 +46,7 @@ public class DesktopVodPlayDomain extends LetvTestCase {
 
     @Test
     @CaseName("乐见(视频)桌面播放视频")
-    public void testTVPlay() throws UiObjectNotFoundException , RemoteException {
+    public void testDesktopTVPlay() throws UiObjectNotFoundException , RemoteException {
         gotoHomeScreen("乐见");
             try {
                 TVPlay();

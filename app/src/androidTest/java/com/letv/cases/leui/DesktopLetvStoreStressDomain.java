@@ -23,7 +23,7 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
 
     @Test
     @CaseName("进入应用商店打开并下载应用")
-    public void testDownloadApp() throws UiObjectNotFoundException, RemoteException {
+    public void testDesktopDownloadApp() throws UiObjectNotFoundException, RemoteException {
         addStep("打开LetvStore");
         gotoHomeScreen("应用");
         launchApp(AppName.LeStore, IntentConstants.LeStore);

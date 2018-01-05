@@ -39,7 +39,6 @@ public class APPMusicDomain extends LetvTestCase {
             }
     }
 
-
     public void PlayMusic() throws UiObjectNotFoundException, RemoteException {
         addStep("播放音频文件50s");
         press_center(1);
