@@ -14,7 +14,7 @@ import org.junit.Test;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DesktopVodPlayDomain extends LetvTestCase {
+public class DesktopLeVideoDomain extends LetvTestCase {
     int count=0;
     @Override
     public void setUp() throws Exception {
@@ -45,11 +45,13 @@ public class DesktopVodPlayDomain extends LetvTestCase {
 
 
     @Test
-    @CaseName("乐见(视频)桌面播放视频")
-    public void testDesktopTVPlay() throws UiObjectNotFoundException , RemoteException {
+    @CaseName("视频桌面播放视频")
+    public void testDesktopLeVideoPlay() throws UiObjectNotFoundException , RemoteException {
         gotoHomeScreen("乐见");
+        press_back(3);
+        press_down(1);
             try {
-                TVPlay();
+                LeVideoPlay();
             }catch (Exception e){
                 try {
                     count ++;
@@ -62,7 +64,7 @@ public class DesktopVodPlayDomain extends LetvTestCase {
                     poster2.click();
                     sleepInt(2);
                     updateAPP();
-                    TVPlay();
+                    LeVideoPlay();
                 }catch (RuntimeException re){
                     screenShot();
                     junit.framework.Assert.fail(re.getMessage());
@@ -70,8 +72,8 @@ public class DesktopVodPlayDomain extends LetvTestCase {
             }
         press_back(3);
     }
-    public void TVPlay() throws UiObjectNotFoundException , RemoteException {
-        addStep("在乐见(视频)桌面选择任意海报，进入");
+    public void LeVideoPlay() throws UiObjectNotFoundException , RemoteException {
+        addStep("在视频桌面选择任意海报，进入");
         updateAPP();
         press_down(1);
         UiObject2 poster_small_3=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_small_3"));
@@ -92,21 +94,63 @@ public class DesktopVodPlayDomain extends LetvTestCase {
         exitApp();
         sleepInt(2);
         press_back(3);
-        sleepInt(1);
+    }
 
 
-        addStep("进入乐见播放记录");
-        UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("视频|乐见")).selected(true));
-        UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("视频|乐见")).focused(true));
-        verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
-        press_down(2);
-        UiObject2 poster_no_title_1=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_no_title_1"));
-        check("未进入乐见播放记录",poster_no_title_1!=null);
-        poster_no_title_1.click();
-        poster_no_title_1.click();
-        sleepInt(2);
+    @Test
+    @CaseName("进入视频桌面海报浏览")
+    public void testDesktopLePosters() throws UiObjectNotFoundException , RemoteException {
+        gotoHomeScreen("乐见");
         press_back(3);
+        press_down(1);
+        try {
+            LePosters();
+        }catch (Exception e){
+            try {
+                count ++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("乐见|视频");
+                LePosters();
+            }catch (RuntimeException re){
+                screenShot();
+                junit.framework.Assert.fail(re.getMessage());
+            }
+        }
+        press_back(3);
+    }
+    public void LePosters() throws UiObjectNotFoundException , RemoteException {
+        addStep("进入视频桌面海报浏览");
+        press_down(1);
+        press_down(3);
+        for (int i=0;i<10;i++){
+            press_right(2);
+            press_left(2);
+            press_down(1);
+            desktopVodplay();
+        }
+    }
 
+    @Test
+    @CaseName("视频桌面搜索")
+    public void testDesktopLeVideoSearch() throws UiObjectNotFoundException , RemoteException {
+        gotoHomeScreen("乐见");
+        press_back(3);
+        try {
+            LeVideoSearch();
+        }catch (Exception e){
+            try {
+                count ++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("乐见|视频");
+                LeVideoSearch();
+            }catch (RuntimeException re){
+                screenShot();
+                junit.framework.Assert.fail(re.getMessage());
+            }
+        }
+        press_back(3);
+    }
+    public void LeVideoSearch() throws UiObjectNotFoundException , RemoteException {
         addStep("进入乐见搜索");
         press_down(2);
         UiObject2 poster_no_title_2=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_no_title_2"));
@@ -115,7 +159,30 @@ public class DesktopVodPlayDomain extends LetvTestCase {
         poster_no_title_2.click();
         sleepInt(2);
         press_back(3);
+    }
 
+
+    @Test
+    @CaseName("视频桌面视频分类")
+    public void testDeskLeVideoClassification() throws UiObjectNotFoundException , RemoteException {
+        gotoHomeScreen("乐见");
+        press_back(3);
+        try {
+            LeVideoClassification();
+        }catch (Exception e){
+            try {
+                count ++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("乐见|视频");
+                LeVideoClassification();
+            }catch (RuntimeException re){
+                screenShot();
+                junit.framework.Assert.fail(re.getMessage());
+            }
+        }
+        press_back(3);
+    }
+    public void LeVideoClassification() throws UiObjectNotFoundException , RemoteException {
         addStep("进入乐见内容分类");
         press_down(2);
         UiObject2 poster_no_title_3=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.video:id/poster_no_title_3"));
@@ -124,8 +191,41 @@ public class DesktopVodPlayDomain extends LetvTestCase {
         poster_no_title_3.click();
         sleepInt(2);
         press_back(3);
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void desktopVodplay()throws UiObjectNotFoundException, RemoteException{
+        UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).selected(true));
+        UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).focused(true));
+        verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+    }
+
+
+
+
+
+
+
+
 
 
 
