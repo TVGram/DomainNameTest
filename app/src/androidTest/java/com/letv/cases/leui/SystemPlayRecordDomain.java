@@ -67,18 +67,18 @@ public class SystemPlayRecordDomain extends LetvTestCase{
 
     @Test
     @CaseName("播放记录中播放")
-    public void testDeleteOne()throws UiObjectNotFoundException, RemoteException {
+    public void testPlayRecordPlay()throws UiObjectNotFoundException, RemoteException {
         addStep("进入播放记录");
         launchApp(AppName.PlayHistory,IntentConstants.PlayHistory);{
             try {
-                DeleteOne();
+                PlayRecordPlay();
             }catch (Exception e){
                 try {
                     count ++;
                     failCount(count, getIntParams("Loop"), e.getMessage());
                     addStep("进入播放记录");
                     launchApp(AppName.PlayHistory,IntentConstants.PlayHistory);
-                    DeleteOne();
+                    PlayRecordPlay();
                 }catch (RuntimeException re){
                     screenShot();
                     junit.framework.Assert.fail(re.getMessage());
@@ -86,7 +86,7 @@ public class SystemPlayRecordDomain extends LetvTestCase{
             }
         }
     }
-    public void DeleteOne()throws UiObjectNotFoundException,RemoteException{
+    public void PlayRecordPlay()throws UiObjectNotFoundException,RemoteException{
         addStep("播放记录播放");
         UiObject2 supertv=phone.findObject(By.text("超级影视"));
         check("未进入超级影视",supertv!=null);
