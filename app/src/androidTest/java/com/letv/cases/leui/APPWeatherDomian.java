@@ -19,24 +19,17 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 
-/**
- * Created by wangyaxiu on 2016/12/23.
- */
-
 public class APPWeatherDomian extends  LetvTestCase{
    int count = 0;
 
     @Test
-    @CaseName("应用桌面操作天气应用")
-    public void testWeatherApp() throws UiObjectNotFoundException, RemoteException{
+    @CaseName("天气应用进入")
+    public void testWeatherAppEnter() throws UiObjectNotFoundException, RemoteException{
             try {
                 addStep("打开应用桌面，进入天气应用");
                 gotoHomeScreen("应用");
                 launchApp(AppName.Weather, IntentConstants.WeatherCIBN);
-
-                //更新天气和切换城市
                 Weather();
-
                 addStep("退出天气应用");
                 press_back(2);
             } catch (Exception e) {
@@ -97,4 +90,42 @@ public class APPWeatherDomian extends  LetvTestCase{
 
         return cityName;
     }
+
+    @Test
+    @CaseName("天气应用上下切换")
+    public void testWeatherSwicth() throws UiObjectNotFoundException, RemoteException{
+        try {
+            addStep("打开应用桌面，进入天气应用");
+            gotoHomeScreen("应用");
+            launchApp(AppName.Weather, IntentConstants.WeatherCIBN);
+            addStep("天气应用上下切换");
+            press_down(3);
+            press_up(3);
+            sleepInt(3);
+            press_back(2);
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                addStep("打开应用桌面，进入天气应用");
+                gotoHomeScreen("应用");
+                launchApp(AppName.Weather, IntentConstants.WeatherCIBN);
+                addStep("天气应用上下切换");
+                press_down(3);
+                press_up(3);
+                sleepInt(2);
+                press_back(2);
+
+            } catch (RuntimeException re) {
+                screenShot();
+                org.junit.Assert.fail(re.getMessage());
+            }
+        }
+
+    }
+
+
+
+
+
 }
