@@ -30,15 +30,15 @@ public class APPCalendarDomain extends LetvTestCase {
     int count = 0;
 
     @Test
-    @CaseName("多次进入日历应用，查看日历界面显示")
-    public void testEntryCalendar() throws UiObjectNotFoundException, RemoteException {
+    @CaseName("进入日历应用")
+    public void testCalendarEnter() throws UiObjectNotFoundException, RemoteException {
         try {
-            EntryCalendar();
+            CalendarEnter();
         } catch (Exception e) {
             try {
                 count++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
-                EntryCalendar();
+                CalendarEnter();
             } catch (RuntimeException re) {
                 screenShot();
                 Assert.fail(re.getMessage());
@@ -46,20 +46,70 @@ public class APPCalendarDomain extends LetvTestCase {
         }
         press_back(3);
     }
-
-    public void EntryCalendar() throws UiObjectNotFoundException, RemoteException {
-
+    public void CalendarEnter() throws UiObjectNotFoundException, RemoteException {
         addStep("打开日历App");
         gotoHomeScreen("应用");
         launchApp(AppName.Calendar, IntentConstants.Calendar);
         sleepInt(2);
+    }
+
+
+
+
+    @Test
+    @CaseName("多次进入日历应用，查看日历界面显示")
+    public void testCalendarSelectData() throws UiObjectNotFoundException, RemoteException {
+        addStep("打开日历App");
+        gotoHomeScreen("应用");
+        launchApp(AppName.Calendar, IntentConstants.Calendar);
+        sleepInt(2);
+        try {
+            CalendarSelectData();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                CalendarSelectData();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+        press_back(3);
+    }
+    public void CalendarSelectData() throws UiObjectNotFoundException, RemoteException {
 
         addStep("选择日历中的任意日期进入");
         press_down(2);
         press_center(1);
         press_back(1);
         sleepInt(2);
+    }
 
+
+
+    @Test
+    @CaseName("多次进入日历应用，查看日历界面显示")
+    public void testCalendarLeftRight() throws UiObjectNotFoundException, RemoteException {
+        addStep("打开日历App");
+        gotoHomeScreen("应用");
+        launchApp(AppName.Calendar, IntentConstants.Calendar);
+        sleepInt(2);
+        try {
+            CalendarLeftRight();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                CalendarLeftRight();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+        press_back(3);
+    }
+    public void CalendarLeftRight() throws UiObjectNotFoundException, RemoteException {
         addStep("日历中上下左右键进行切换日期");
         press_down(GenerateRandom(7));
         sleepInt(2);
@@ -70,4 +120,27 @@ public class APPCalendarDomain extends LetvTestCase {
         press_left(GenerateRandom(7));
         sleepInt(2);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

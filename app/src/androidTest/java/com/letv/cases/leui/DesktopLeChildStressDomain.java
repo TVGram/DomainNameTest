@@ -23,20 +23,20 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
     int count = 0;
 
     @Test
-    @CaseName("进入儿童桌面")
-    public void testChildDesktop() throws UiObjectNotFoundException, RemoteException {
+    @CaseName("进入儿童桌面播放记录")
+    public void testChildDesktopPlayRecording() throws UiObjectNotFoundException, RemoteException {
             addStep("切换到儿童桌面");
             gotoHomeScreen("儿童");
             press_down(1);
             press_back(3);
             try{
-                ChildDesktop();
+                ChildDesktopPlayRecording();
             }
             catch (Exception e){
                 try{
                     count++;
                     failCount(count,getIntParams("Loop"),e.getMessage());
-                    ChildDesktop();
+                    ChildDesktopPlayRecording();
                 }
                 catch (RuntimeException re){
                     screenShot();
@@ -45,8 +45,7 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
             }
             press_back(4);
     }
-    public void ChildDesktop() throws UiObjectNotFoundException, RemoteException {
-
+    public void ChildDesktopPlayRecording() throws UiObjectNotFoundException, RemoteException {
         addStep("进入儿童桌面播放记录");
         press_down(3);
         UiObject2 item_history = waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.kids:id/item_history"));
@@ -54,7 +53,32 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
         item_history.click();
         item_history.click();
         desktop();
+    }
 
+    @Test
+    @CaseName("进入儿童桌面搜索")
+    public void testChildDesktopSearch() throws UiObjectNotFoundException, RemoteException {
+        addStep("切换到儿童桌面");
+        gotoHomeScreen("儿童");
+        press_down(1);
+        press_back(3);
+        try{
+            ChildDesktopSecarch();
+        }
+        catch (Exception e){
+            try{
+                count++;
+                failCount(count,getIntParams("Loop"),e.getMessage());
+                ChildDesktopSecarch();
+            }
+            catch (RuntimeException re){
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+        press_back(4);
+    }
+    public void ChildDesktopSecarch() throws UiObjectNotFoundException, RemoteException {
         addStep("进入儿童桌面搜索");
         press_down(3);
         UiObject2 entrance_5 = waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.kids:id/entrance_5"));
@@ -62,16 +86,32 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
         entrance_5.click();
         entrance_5.click();
         desktop();
+    }
 
-//        addStep("进入儿童桌面分类");
-//        press_down(3);
-//        UiObject2 entrance_4 = waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.kids:id/entrance_4"));
-//        check("未进入儿童桌面分类",entrance_4!=null);
-//        entrance_4.click();
-//        entrance_4.click();
-//        gotoHomeScreen("儿童");
-//        desktop();
-
+    @Test
+    @CaseName("进入儿童桌面儿童TV")
+    public void testChildDesktopChildTV() throws UiObjectNotFoundException, RemoteException {
+        addStep("切换到儿童桌面");
+        gotoHomeScreen("儿童");
+        press_down(1);
+        press_back(3);
+        try{
+            ChildDesktopChildTV();
+        }
+        catch (Exception e){
+            try{
+                count++;
+                failCount(count,getIntParams("Loop"),e.getMessage());
+                ChildDesktopChildTV();
+            }
+            catch (RuntimeException re){
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+        press_back(4);
+    }
+    public void ChildDesktopChildTV() throws UiObjectNotFoundException, RemoteException {
         addStep("进入儿童桌面儿童TV");
         press_down(3);
         UiObject2 entrance_3 = waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.kids:id/entrance_3"));
@@ -79,8 +119,32 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
         entrance_3.click();
         entrance_3.click();
         desktop();
+    }
 
-
+    @Test
+    @CaseName("进入儿童桌面时间控制")
+    public void testChildDesktopTimecontrol() throws UiObjectNotFoundException, RemoteException {
+        addStep("切换到儿童桌面");
+        gotoHomeScreen("儿童");
+        press_down(1);
+        press_back(3);
+        try{
+            ChildDesktopTimecontrol();
+        }
+        catch (Exception e){
+            try{
+                count++;
+                failCount(count,getIntParams("Loop"),e.getMessage());
+                ChildDesktopTimecontrol();
+            }
+            catch (RuntimeException re){
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+        press_back(4);
+    }
+    public void ChildDesktopTimecontrol() throws UiObjectNotFoundException, RemoteException {
         addStep("进入儿童桌面时间控制");
         press_down(3);
         UiObject2 entrance_2 = waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.kids:id/entrance_2"));
@@ -88,8 +152,34 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
         entrance_2.click();
         entrance_2.click();
         desktop();
-        press_back(4);
+        press_back(3);
+    }
 
+    @Test
+    @CaseName("进入儿童桌面海报浏览")
+    public void testChildDesktopPoster() throws UiObjectNotFoundException, RemoteException {
+        addStep("切换到儿童桌面");
+        gotoHomeScreen("儿童");
+        press_down(1);
+        press_back(3);
+        try{
+            ChildDesktopDesktopPoster();
+        }
+        catch (Exception e){
+            try{
+                count++;
+                failCount(count,getIntParams("Loop"),e.getMessage());
+                ChildDesktopDesktopPoster();
+            }
+            catch (RuntimeException re){
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+        press_back(4);
+    }
+    public void ChildDesktopDesktopPoster() throws UiObjectNotFoundException, RemoteException {
+        addStep("进入儿童桌面海报浏览");
         press_down(4);
         for (int i =0;i<5;i++){
             sleepInt(2);
@@ -101,6 +191,12 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
             verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
         }
     }
+
+
+
+
+
+
     public void desktop()throws UiObjectNotFoundException, RemoteException{
         sleepInt(3);
         press_back(4);

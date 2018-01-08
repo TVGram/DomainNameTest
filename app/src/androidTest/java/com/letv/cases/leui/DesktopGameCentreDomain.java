@@ -34,57 +34,155 @@ public class DesktopGameCentreDomain extends LetvTestCase{
     BySelector openApp = By.clazz("android.widget.TextView").text(Pattern.compile("立即打开|打开|Open"));
 
     @Test
-    @CaseName("进入桌面游戏")
-    public void testDesktopGameDeskSwitch() throws UiObjectNotFoundException, RemoteException {
+    @CaseName("进入桌面游戏我的游戏")
+    public void testDesktopGameDeskMygame() throws UiObjectNotFoundException, RemoteException {
         addStep("打开同游戏桌面");
         gotoHomeScreen("游戏");
         press_down(1);
             addStep("进入游戏");
             try {
-                GameDeskSwitch();
+                GameDeskMygame();
             } catch (Exception e) {
                 try {
                     count++;
                     failCount(count, getIntParams("Loop"), e.getMessage());
                     addStep("打开游戏桌面");
                     gotoHomeScreen("游戏");
-                    GameDeskSwitch();
+                    GameDeskMygame();
                 } catch (RuntimeException re) {
                     screenShot();
                     Assert.fail(re.getMessage());
                 }
             }
     }
-    public void GameDeskSwitch() throws UiObjectNotFoundException, RemoteException {
-        addStep("游戏桌面海报浏览");
+    public void GameDeskMygame() throws UiObjectNotFoundException, RemoteException {
+        addStep("游戏桌面我的游戏");
         press_down(3);
         UiObject2 mygame=waitForObj(By.res("com.stv.plugin.game:id/entrance_1"));
         check("",mygame!=null);
         mygame.click();
         mygame.click();
         desktop();
+    }
 
+    @Test
+    @CaseName("进入游戏桌面排行榜")
+    public void testDesktopGameDeskList() throws UiObjectNotFoundException, RemoteException {
+        addStep("打开同游戏桌面");
+        gotoHomeScreen("游戏");
+        press_down(1);
+        addStep("进入游戏");
+        try {
+            GameDeskList();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                addStep("打开游戏桌面");
+                gotoHomeScreen("游戏");
+                GameDeskList();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+    }
+    public void GameDeskList() throws UiObjectNotFoundException, RemoteException {
         addStep("游戏桌面排行榜");
         press_down(3);
         UiObject2 classfisr=waitForObj(By.res("com.stv.plugin.game:id/entrance_2"));
         classfisr.click();
         classfisr.click();
         desktop();
+    }
 
-        addStep("游戏桌面游大厅");
+
+    @Test
+    @CaseName("游戏桌面游戏大厅")
+    public void testDesktopGameDeskHall() throws UiObjectNotFoundException, RemoteException {
+        addStep("打开同游戏桌面");
+        gotoHomeScreen("游戏");
+        press_down(1);
+        addStep("进入游戏");
+        try {
+            GameDeskHall();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                addStep("打开游戏桌面");
+                gotoHomeScreen("游戏");
+                GameDeskHall();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+    }
+    public void GameDeskHall() throws UiObjectNotFoundException, RemoteException {
+        addStep("游戏桌面游戏大厅");
         press_down(3);
         UiObject2 lobby=waitForObj(By.res("com.stv.plugin.game:id/entrance_3"));
         lobby.click();
         lobby.click();
         desktop();
+    }
 
+    @Test
+    @CaseName("进入桌面游戏搜索")
+    public void testDesktopGameDeskSearch() throws UiObjectNotFoundException, RemoteException {
+        addStep("打开同游戏桌面");
+        gotoHomeScreen("游戏");
+        press_down(1);
+        addStep("进入游戏");
+        try {
+            GameDeskSearch();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                addStep("打开游戏桌面");
+                gotoHomeScreen("游戏");
+                GameDeskSearch();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+    }
+    public void GameDeskSearch() throws UiObjectNotFoundException, RemoteException {
         addStep("游戏桌面搜索");
         press_down(3);
         UiObject2 Search=waitForObj(By.res("com.stv.plugin.game:id/entrance_4"));
         Search.click();
         Search.click();
         desktop();
+    }
 
+
+    @Test
+    @CaseName("进入桌面游戏海报浏览")
+    public void testDesktopGameDeskPoster() throws UiObjectNotFoundException, RemoteException {
+        addStep("打开同游戏桌面");
+        gotoHomeScreen("游戏");
+        press_down(1);
+        addStep("进入游戏");
+        try {
+            GameDeskPoster();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                addStep("打开游戏桌面");
+                gotoHomeScreen("游戏");
+                GameDeskPoster();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+    }
+    public void GameDeskPoster() throws UiObjectNotFoundException, RemoteException {
         addStep("游戏桌面海报浏览");
         String arrGameDeskSwitch[] = {"猜你喜欢","花式抽卡，欧气满满.*","与您一起，见证宝贝的点滴成长", "畅销榜", "大屏格斗更激爽！", "飙升榜","德州麻将斗地主，象棋斗牛赢三张","感受枪林弹雨的超神快感","热门榜","休闲益智"};
         for (int i = 0; i < arrGameDeskSwitch.length; i++) {

@@ -22,26 +22,24 @@ public class DesktopShoppingDomain extends LetvTestCase{
 
 
     @Test
-    @CaseName("进入购物桌面")
-    public void testDesktopLeShop()throws UiObjectNotFoundException,RemoteException {
+    @CaseName("进入购物桌面海报")
+    public void testDesktopLeShopPoster()throws UiObjectNotFoundException,RemoteException {
         gotoHomeScreen("购物");
             try {
-                LeShop();
+                LeShopPoster();
             } catch (Exception e) {
                 try {
                     count++;
                     failCount(count, getIntParams("Loop"), e.getMessage());
                     gotoHomeScreen("购物");
-                    LeShop();
+                    LeShopPoster();
                 } catch (RuntimeException re) {
                     screenShot();
                     Assert.fail(re.getMessage());
                 }
             }
     }
-    public void LeShop()throws UiObjectNotFoundException,RemoteException{
-
-
+    public void LeShopPoster()throws UiObjectNotFoundException,RemoteException{
         press_back(2);
         addStep("进入购物桌面海报浏览");
         press_down(15);
@@ -52,7 +50,28 @@ public class DesktopShoppingDomain extends LetvTestCase{
         press_back(2);
         press_down(1);
         press_back(3);
+    }
 
+    @Test
+    @CaseName("进入购物桌面个人中心")
+    public void testDesktopLeShopPersonal()throws UiObjectNotFoundException,RemoteException {
+        gotoHomeScreen("购物");
+        press_down(1);
+        try {
+            LeShopPersonal();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("购物");
+                LeShopPersonal();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+    }
+    public void LeShopPersonal()throws UiObjectNotFoundException,RemoteException{
         addStep("进入购物桌面个人中心");
         press_down(1);
         UiObject2 personCenter=waitForObj(By.res("com.stv.shopping:id/child_view5"));
@@ -68,9 +87,29 @@ public class DesktopShoppingDomain extends LetvTestCase{
             AccountLogin();
         }
         press_back(3);
+    }
 
 
-
+    @Test
+    @CaseName("进入购物桌面全部商品")
+    public void testDesktopLeShopAllgoods()throws UiObjectNotFoundException,RemoteException {
+        gotoHomeScreen("购物");
+        press_down(1);
+        try {
+            LeShopAllgoods();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("购物");
+                LeShopAllgoods();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+    }
+    public void LeShopAllgoods()throws UiObjectNotFoundException,RemoteException{
         addStep("进入购物桌面全部商品");
         press_down(2);
         UiObject2 allShop=waitForObj(By.res("com.stv.shopping:id/child_view4"));
@@ -90,6 +129,68 @@ public class DesktopShoppingDomain extends LetvTestCase{
         press_back(3);
 
     }
+
+
+    @Test
+    @CaseName("进入购物桌面搜索")
+    public void testDesktopLeShopSearch()throws UiObjectNotFoundException,RemoteException {
+        gotoHomeScreen("购物");
+        press_down(1);
+        try {
+            LeShopSearch();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("购物");
+                LeShopSearch();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+    }
+    public void LeShopSearch()throws UiObjectNotFoundException,RemoteException{
+        addStep("进入购物桌面搜索");
+        press_down(2);
+        UiObject2 Search=waitForObj(By.res("com.stv.shopping:id/child_view3"));
+        check("未进入全部商品",Search!=null);
+        Search.click();
+        Search.click();
+        sleepInt(1);
+        press_back(3);
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

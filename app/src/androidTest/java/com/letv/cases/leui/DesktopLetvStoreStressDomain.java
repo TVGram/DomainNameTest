@@ -22,20 +22,20 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
     int count=0;
 
     @Test
-    @CaseName("进入应用商店打开并下载应用")
-    public void testDesktopDownloadApp() throws UiObjectNotFoundException, RemoteException {
+    @CaseName("进入应用商店打开")
+    public void testDesktopAppStoreOpen() throws UiObjectNotFoundException, RemoteException {
         addStep("打开LetvStore");
         gotoHomeScreen("应用");
         launchApp(AppName.LeStore, IntentConstants.LeStore);
             try{
-                DownloadApp();
+                AppStoreOpen();
             }
             catch (Exception e){
                 try{
                     count++;
                     failCount(count,getIntParams("Loop"),e.getMessage());
                     launchApp(AppName.LeStore, IntentConstants.LeStore);
-                    DownloadApp();
+                    AppStoreOpen();
                 }
                 catch (RuntimeException re){
                     screenShot();
@@ -48,7 +48,7 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
         exitApp();
         press_back(4);
     }
-    public void DownloadApp() throws UiObjectNotFoundException, RemoteException {
+    public void AppStoreOpen() throws UiObjectNotFoundException, RemoteException {
         BySelector upgradeBtnS = By.text(Pattern.compile("升 级|Upgrade"));
         UiObject2 upgradeBtn = phone.findObject(upgradeBtnS);
         if (upgradeBtn != null) {
@@ -63,8 +63,6 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
             press_back(1);
             sleepInt(1);
         }
-//        UiObject2 manager = phone.findObject(storeS);
-//        check("未能进入LetvStore主界面", manager != null);
         press_up(1);
         String arr[] = {"精品", "应用", "游戏","分类"};
         for (int i = 0; i < arr.length; i++) {
@@ -73,6 +71,52 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
             press_right(1);
             sleepInt(2);
         }
+        exitApp();
+    }
+
+    @Test
+    @CaseName("进入应用商店打开并下载应用")
+    public void testDesktopAppStoreDownload() throws UiObjectNotFoundException, RemoteException {
+        addStep("打开LetvStore");
+        gotoHomeScreen("应用");
+        launchApp(AppName.LeStore, IntentConstants.LeStore);
+        try{
+            AppStoreDownload();
+        }
+        catch (Exception e){
+            try{
+                count++;
+                failCount(count,getIntParams("Loop"),e.getMessage());
+                launchApp(AppName.LeStore, IntentConstants.LeStore);
+                AppStoreDownload();
+            }
+            catch (RuntimeException re){
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+
+        press_back(1);
+        sleepInt(2);
+        exitApp();
+        press_back(4);
+    }
+    public void AppStoreDownload() throws UiObjectNotFoundException, RemoteException {
+        BySelector upgradeBtnS = By.text(Pattern.compile("升 级|Upgrade"));
+        UiObject2 upgradeBtn = phone.findObject(upgradeBtnS);
+        if (upgradeBtn != null) {
+            addStep("检测到升级按钮，升级乐视应用商店");
+            upgradeBtn.click();
+            sleepInt(120);
+            press_right(4);
+            sleepInt(10);
+        }
+        UiObject2 install = phone.findObject(By.text("一键安装"));
+        if (install != null) {
+            press_back(1);
+            sleepInt(1);
+        }
+
         press_up(1);
         press_right(1);
         sleepInt(1);
@@ -117,6 +161,7 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
         sleepInt(2);
         press_back(4);
         sleepInt(4);
+        exitApp();
 //
 //        addStep("进入应用管理");
 //        UiObject2 manage = waitForObj(By.res("com.letv.tvos.appstore:id/tv_manager").text("管理"));
@@ -152,4 +197,5 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
 //        sleepInt(1);
 
     }
+
 }
