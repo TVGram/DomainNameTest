@@ -24,7 +24,6 @@ import java.util.regex.Pattern;
 public class APPThemesDomian extends LetvTestCase{
     int count=0;
 
-
     @Test
     @CaseName("主题商店进入")
     public void testThemesEnter()throws UiObjectNotFoundException, RemoteException{
@@ -212,7 +211,6 @@ public class APPThemesDomian extends LetvTestCase{
         sleepInt(4);
         press_back(3);
     }
-
 
     public void deskNO() {
         UiObject2 deskno = phone.findObject(By.text("重试"));
