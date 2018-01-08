@@ -12,7 +12,7 @@ import com.letv.common.PkgName;
 
 import org.junit.Test;
 
-public class APPSystemUpLoadDomain extends LetvTestCase {
+public class SystemUpLoadDomain extends LetvTestCase {
 
     @Test
     @CaseName("系统更新")

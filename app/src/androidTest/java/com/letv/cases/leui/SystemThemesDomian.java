@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 
 
-public class APPThemesDomian extends LetvTestCase{
+public class SystemThemesDomian extends LetvTestCase{
     int count=0;
 
     @Test

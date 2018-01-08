@@ -15,7 +15,7 @@ import org.junit.Test;
 
 import java.util.regex.Pattern;
 
-public class APPMusicDomain extends LetvTestCase {
+public class SystemMusicDomain extends LetvTestCase {
     int count=0;
 
     @Test
