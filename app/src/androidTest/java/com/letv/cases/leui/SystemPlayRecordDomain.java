@@ -37,9 +37,6 @@ public class SystemPlayRecordDomain extends LetvTestCase{
     @CaseName("打开播放记录")
     public void testPlayRecordOpen() throws UiObjectNotFoundException, RemoteException {
         addStep("进入播放记录");
-        gotoHomeScreen("应用");
-        press_down(5);
-        addStep("进入播放记录");
         launchApp(AppName.PlayHistory,IntentConstants.PlayHistory);
         sleepInt(3);
         press_back(3);
