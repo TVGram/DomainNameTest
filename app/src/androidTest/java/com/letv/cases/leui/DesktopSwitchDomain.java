@@ -15,8 +15,8 @@ public class DesktopSwitchDomain extends LetvTestCase{
     public void testDesktop() throws UiObjectNotFoundException, RemoteException{
         addStep("切换到应用桌面");
         gotoHomeScreen("应用");
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
-            addStep(".............looper : " + Loop);
+        for (int i = 0; i < 2; i++) {
+            addStep(".............looper : " + i);
             addStep("在桌面向左滑动15次");
             press_left(15);
             addStep("在桌面向右滑动15次");
