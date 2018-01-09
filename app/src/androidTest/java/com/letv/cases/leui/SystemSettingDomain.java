@@ -27,7 +27,6 @@ public class SystemSettingDomain extends LetvTestCase {
     public void testSettingNetwork() throws UiObjectNotFoundException, RemoteException {
         gotoHomeScreen("应用");
         addStep("切换到应用桌面通过按键打开设置");
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
             try {
                 SettingNetwork();
             } catch (Exception e) {
@@ -41,9 +40,6 @@ public class SystemSettingDomain extends LetvTestCase {
                     screenShot();
                     junit.framework.Assert.fail(re.getMessage());
                 }
-
-            }
-            press_back(3);
         }
 
     }
@@ -76,13 +72,11 @@ public class SystemSettingDomain extends LetvTestCase {
     }
 
 
-
     @Test
     @CaseName("设置网络诊断")
     public void testSettingNetworkDiagnose() throws UiObjectNotFoundException, RemoteException {
         gotoHomeScreen("应用");
         addStep("设置网络诊断");
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
             try {
                 SettingNetworkDiagnose();
             } catch (Exception e) {
@@ -90,15 +84,12 @@ public class SystemSettingDomain extends LetvTestCase {
                     count++;
                     failCount(count, getIntParams("Loop"), e.getMessage());
                     gotoHomeScreen("应用");
-                    addStep("切换到应用桌面通过按键打开设置");
+                    addStep("设置网络诊断");
                     SettingNetworkDiagnose();
                 } catch (RuntimeException re) {
                     screenShot();
                     junit.framework.Assert.fail(re.getMessage());
                 }
-
-            }
-            press_back(3);
         }
 
     }
@@ -117,16 +108,17 @@ public class SystemSettingDomain extends LetvTestCase {
             }
         }
         press_down(4);
-        UiObject2 detection=waitForObj(By.res("eui.tv:id/textView").text("网络诊断"));
-        check("未进入播放测速",detection!=null);
-        detection.click();
-        detection.click();
+//        UiObject2 detectiont=waitForObj(By.res("eui.tv:id/textView").text("网络诊断"));
+//        check("未进入网络诊断",detectiont!=null);
+//        detectiont.click();
+//        detectiont.click();
         press_right(2);
+//        press_center(1);
         UiObject2 detection_btn=waitForObj(By.res("com.stv.globalsetting:id/detection_btn").text("开始诊断"));
-        check("未进入开始测速",detection_btn!=null);
+        check("未进入开始诊断",detection_btn!=null);
         detection_btn.click();
-        detection_btn.click();
-        sleepInt(33);
+        press_center(1);
+        sleepInt(60);
         press_back(3);
     }
 }
