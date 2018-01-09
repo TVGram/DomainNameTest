@@ -26,6 +26,29 @@ public class SystemAccountDomain extends LetvTestCase{
 
     @Test
     @CaseName("删除、登录、乐视账号")
+    public void testAccountEnter() throws UiObjectNotFoundException, RemoteException {
+        try {
+            launchApp(AppName.LeAccount,IntentConstants.LeAccount);
+            sleepInt(5);
+        }catch (Exception e){
+            try {
+                count ++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                addStep("进入乐视帐号");
+                launchApp(AppName.LeAccount,IntentConstants.LeAccount);
+                sleepInt(5);
+            }catch (RuntimeException re){
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+
+    }
+
+
+
+    @Test
+    @CaseName("删除、登录、乐视账号")
     public void testAccountLogin() throws UiObjectNotFoundException, RemoteException {
 //        SuperTV();
         launchApp(AppName.LeAccount,IntentConstants.LeAccount);

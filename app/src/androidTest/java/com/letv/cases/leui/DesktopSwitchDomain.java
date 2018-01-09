@@ -12,7 +12,7 @@ public class DesktopSwitchDomain extends LetvTestCase{
 
     @Test
     @CaseName("各个桌面切换")
-    public void testDesktop() throws UiObjectNotFoundException, RemoteException{
+    public void testDesktopSwitch() throws UiObjectNotFoundException, RemoteException{
         addStep("切换到应用桌面");
         gotoHomeScreen("应用");
         for (int i = 0; i < 2; i++) {
