@@ -20,49 +20,35 @@ import java.util.Random;
 import java.util.regex.Pattern;
 
 
-/**
- * Created by wangyaxiu on 2016/12/13.
- */
 
-public class TVmanagerStress extends LetvTestCase{
-
+public class APPTVmanagerStress extends LetvTestCase{
+    int count=0;
     @Test
     @CaseName("电视管家测试")
     public void testTVManger()throws UiObjectNotFoundException, RemoteException{
-
-        for (int Loop = 0; Loop < getIntParams("Loop");Loop++) {
-
-            addStep(".............looper : " + Loop);
-
-            try {
+                    try {
                 addStep("打开应用桌面，进入电视管家");
                 launchApp(AppName.TvManager, IntentConstants.TvManager);
-
                 UiObject2 OneKeyExam = waitForObj(By.res("com.stv.helper.main:id/onekey_exam_label").text(Pattern.compile("一键体检")));
-
-                verify("OneKeyExam not found",OneKeyExam != null);
-                press_back(1);
-
-                addStep("退出电视管家");
-                press_back(2);
+                OneKeyExam.click();
+                OneKeyExam.click();
+                sleepInt(60);
+                press_back(3);
             }catch (Exception e) {
                 try {
+                    count ++;
+                    failCount(count, getIntParams("Loop"), e.getMessage());
                     addStep("打开应用桌面，进入电视管家");
-                    launchApp(AppName.TvManager, PkgName.TvManager);
-
-                    //UiObject2 OneKeyExam = waitForObj(By.res("com.stv.helper.main:id/onekey_exam_label").text(Pattern.compile("一键体检")));
-                    UiObject2 OneKeyExam=waitForObj(By.clazz("").text(""));
-                    verify("OneKeyExam not found",OneKeyExam != null);
-                    press_back(1);
-
-                    addStep("退出电视管家");
-                    press_back(2);
+                    launchApp(AppName.TvManager, IntentConstants.TvManager);
+                    UiObject2 OneKeyExam = waitForObj(By.res("com.stv.helper.main:id/onekey_exam_label").text(Pattern.compile("一键体检")));
+                    OneKeyExam.click();
+                    OneKeyExam.click();
+                    sleepInt(60);
+                    press_back(3);
                 }catch (RuntimeException re) {
                     screenShot();
                     org.junit.Assert.fail(re.getMessage());
                 }
             }
-        }
-
     }
 }

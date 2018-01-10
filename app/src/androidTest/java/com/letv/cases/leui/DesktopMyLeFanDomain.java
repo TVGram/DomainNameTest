@@ -13,30 +13,84 @@ import com.letv.common.LetvTestCase;
 import junit.framework.Assert;
 import org.junit.Test;
 import java.util.regex.Pattern;
-public class MyLeFanStress extends LetvTestCase{
+public class DesktopMyLeFanDomain extends LetvTestCase{
     int count=0;
+
     @Test
-    @CaseName("我的乐范个人帐号和全部特权遍历")
-    public void testmyLeFan()throws UiObjectNotFoundException,RemoteException{
+    @CaseName("我的乐范海报")
+    public void testmyLeFanPoster()throws UiObjectNotFoundException,RemoteException{
         addStep("进入我的乐范");
         gotoHomeScreen("我的乐范");
-        for(int Loop=0;Loop<getIntParams("Loop");Loop++) {
+        try {
+            myLeFanPoster();
+        } catch (Exception e) {
             try {
-                mylefan();
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("我的乐范");
+                myLeFanPoster();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+    }
+    public void myLeFanPoster()throws UiObjectNotFoundException,RemoteException{
+        for (int i=1;i<=4;i++){
+            sleepInt(1);
+            if (i==1) {
+                press_down(i);
+                press_right(1);
+                press_back(3);
+            }
+            if (i==2) {
+                press_down(i);
+                press_right(5);
+                press_back(3);
+            }
+            if (i==3) {
+                press_down(i);
+                press_right(5);
+                press_back(3);
+            }
+            if (i==4) {
+                press_down(i);;
+                press_right(1);
+                press_back(3);
+            }
+            desktop();
+        }
+
+    }
+    public void desktop()throws UiObjectNotFoundException, RemoteException{
+        sleepInt(4);
+        exitApp();
+        UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("我的乐范")).selected(true));
+        UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("我的乐范")).focused(true));
+        verify("没有返回乐范桌面", desktop1 != null || desktop2 != null);
+    }
+
+
+    @Test
+    @CaseName("我的乐范成长值")
+    public void testmyLeFanGrowth()throws UiObjectNotFoundException,RemoteException{
+        addStep("进入我的乐范");
+        gotoHomeScreen("我的乐范");
+        try {
+            myLeFanGrowth();
             } catch (Exception e) {
                 try {
                     count++;
                     failCount(count, getIntParams("Loop"), e.getMessage());
                     gotoHomeScreen("我的乐范");
-                    mylefan();
+                    myLeFanGrowth();
                 } catch (RuntimeException re) {
                     screenShot();
                     Assert.fail(re.getMessage());
                 }
             }
-        }
     }
-    public void mylefan()throws UiObjectNotFoundException,RemoteException{
+    public void myLeFanGrowth()throws UiObjectNotFoundException,RemoteException{
         press_down(1);
         press_back(2);
         press_down(1);
@@ -55,44 +109,47 @@ public class MyLeFanStress extends LetvTestCase{
         check("未进入我的成长明细",growthlist!=null);
         growthlist.click();
         sleepInt(2);
-        String arr[]={"全部明细","消费成长","开机成长","退货扣除"};
-        for(int i=0;i<arr.length;i++){
-            UiObject2 arrlist=waitForObj(By.text(arr[i]));
-            arrlist.click();
-            press_right(2);
-            press_left(2);
-            sleepInt(1);
+        press_back(2);
+    }
+
+
+    @Test
+    @CaseName("我的乐范全部特权")
+    public void testmyLeFanPrivilege()throws UiObjectNotFoundException,RemoteException{
+        addStep("进入我的乐范");
+        gotoHomeScreen("我的乐范");
+        try {
+            myLeFanPrivilege();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("我的乐范");
+                myLeFanPrivilege();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
         }
-        press_back(3);
-        sleepInt(1);
+    }
+    public void myLeFanPrivilege()throws UiObjectNotFoundException,RemoteException{
         press_down(1);
-        UiObject2 presonPrivilege=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.ucenter:id/privilege_item1"));
+        UiObject2 presonPrivilege=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.ucenter:id/focus_layout"));
         check("未进入个人特权",presonPrivilege !=null);
         presonPrivilege.click();
         presonPrivilege.click();
         press_left(2);
         UiObject2 allPrivilege=phone.findObject(By.text("全部特权"));
         check("未进入全部特权",allPrivilege!=null);
-        String arrprivilege[]={"福利特权","购物特权","续费特权","金融特权","服务特权","游戏特权"};
-        for(int k=0;k<2;k++) {
-            for (int j = 0; j < arrprivilege.length; j++) {
-                press_left(3);
-                UiObject2 priv = waitForObj(By.clazz("android.widget.RadioButton").text(arrprivilege[j]));
-                check("未进入" + arrprivilege[j], priv != null);
-                press_down(1);
-                press_right(3);
-            }
-            press_up(7);
-        }
         press_back(2);
     }
+
 
     @Test
     @CaseName("我的乐范中卡券、订单地、赠品、兑换、会员续费遍历")
     public void testPersonMyLeFan()throws UiObjectNotFoundException,RemoteException{
         addStep("进入我的乐范");
         gotoHomeScreen("我的乐范");
-        for(int Loop=0;Loop<getIntParams("Loop");Loop++) {
             try {
                 PersonMyLeFan();
             } catch (Exception e) {
@@ -106,29 +163,19 @@ public class MyLeFanStress extends LetvTestCase{
                     Assert.fail(re.getMessage());
                 }
             }
-            press_back(2);
-        }
+        press_back(2);
     }
     public void PersonMyLeFan()throws UiObjectNotFoundException,RemoteException{
         press_down(1);
         press_back(2);
         press_down(3);
+
         addStep("进入我的卡券列表遍历");
         UiObject2 myCardVoucher=waitForObj(By.res("com.stv.plugin.ucenter:id/function_item1"));
         check("未进入我的卡券",myCardVoucher !=null);
         myCardVoucher.click();
         myCardVoucher.click();
         press_left(1);
-        press_up(7);
-        String arrmycard[]={"全部","会员券","联名券","购物券","游戏券"};
-        for(int i=0;i<arrmycard.length;i++) {
-            press_left(1);
-            UiObject2 allcard = waitForObj(By.text(arrmycard[i]));
-            check("未进入卡券列表中的"+arrmycard[i],allcard!=null);
-            press_right(2);
-            press_left(2);
-            press_down(1);
-        }
         press_back(1);
         sleepInt(3);
 
@@ -138,16 +185,6 @@ public class MyLeFanStress extends LetvTestCase{
         myOrderForm.click();
         myOrderForm.click();
         press_left(1);
-        press_up(7);
-        String arrmyOrderForm[]={"购物订单","影视会员","体育会员","CIBN会员"};
-        for(int j=0;j<arrmyOrderForm.length;j++) {
-            press_left(1);
-            UiObject2 allmyOrderForm = waitForObj(By.text(arrmyOrderForm[j]));
-            check("未进入我的乐范中我的订单列表中的"+arrmyOrderForm[j],allmyOrderForm!=null);
-            press_right(2);
-            press_left(2);
-            press_down(1);
-        }
         press_back(1);
         sleepInt(3);
 
@@ -157,16 +194,6 @@ public class MyLeFanStress extends LetvTestCase{
         complimentary.click();
         complimentary.click();
         press_left(1);
-        press_up(3);
-        String arrcomplimentary[]={"CIBN会员","华数会员"};
-        for(int k=0;k<arrcomplimentary.length;k++) {
-            press_left(1);
-            UiObject2 allComplimentary = waitForObj(By.text(arrcomplimentary[k]));
-            check("未进入我的乐范我的订单列表中的"+arrcomplimentary[k],allComplimentary!=null);
-            press_right(2);
-            press_left(2);
-            press_down(1);
-        }
         press_back(1);
         sleepInt(3);
 
@@ -195,16 +222,6 @@ public class MyLeFanStress extends LetvTestCase{
         member.click();
         member.click();
         press_left(1);
-        press_up(4);
-        String arrmember[]={"超级影视会员","超级体育会员","CIBN超级会员"};
-        for(int l=0;l<arrmember.length;l++) {
-            press_left(1);
-            UiObject2 allmember = waitForObj(By.text(arrmember[l]));
-            check("未进入我的乐范我的订单列表中的"+arrmember[l],allmember!=null);
-            press_right(2);
-            press_left(2);
-            press_down(1);
-        }
         press_back(1);
         sleepInt(2);
 
@@ -223,6 +240,26 @@ public class MyLeFanStress extends LetvTestCase{
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void AccountLogin() throws UiObjectNotFoundException,RemoteException{
