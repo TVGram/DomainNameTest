@@ -42,14 +42,34 @@ public class DesktopShoppingDomain extends LetvTestCase{
     public void LeShopPoster()throws UiObjectNotFoundException,RemoteException{
         press_back(2);
         addStep("进入购物桌面海报浏览");
-        press_down(15);
-        UiObject2 shoplog=phone.findObject(By.res("com.stv.shopping:id/shopping_recycler_view"));
-        check("未在购物桌面滑动",shoplog!=null);
-        press_right(1);
-        press_up(15);
-        press_back(2);
-        press_down(1);
+        for (int i=3;i<8;i++) {
+            press_down(i);
+            int GameDesk = phone.findObject(By.text(Pattern.compile("直降专区"))).getParent().getChildCount() - 4;
+            check("未进入直降专区", GameDesk != 0);
+            press_right(GameDesk);
+            press_center(1);
+            sleepInt(5);
+            press_back(1);
+            press_left(GameDesk);
+            press_back(3);
+            desktop();
+        }
+        press_down(8);
+        int GameDesk = phone.findObject(By.text(Pattern.compile("乐范专区"))).getParent().getChildCount()-3;
+        check("未进入直降专区", GameDesk != 0);
+        press_right(GameDesk);
+        press_center(1);
+        sleepInt(5);
         press_back(3);
+        desktop();
+    }
+
+    public void desktop()throws UiObjectNotFoundException, RemoteException{
+        sleepInt(4);
+        exitApp();
+        UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("购物")).selected(true));
+        UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("购物")).focused(true));
+        verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
     }
 
     @Test
