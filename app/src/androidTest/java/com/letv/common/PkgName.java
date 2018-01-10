@@ -50,5 +50,6 @@ public class PkgName {
     public static final String Cinemas = "com.golive.letvcinema/.MainActivity";
     public static final String Tool= "com.stv.message/.MainActivity";
     public static final String ChildrenTV= "com.letv.tv:cde|com.letv.tv:startchild";
+    public static final String WatchingHot="com.stv.watchinghot";
 
 }

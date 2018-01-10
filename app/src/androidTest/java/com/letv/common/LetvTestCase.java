@@ -786,7 +786,7 @@ public class LetvTestCase{
                 sleepInt(5);
                 return true;
             }
-            press_down(1);
+            press_down(2);
         }
         sleepInt(5);
         UiObject2 allapp=phone.findObject(By.text(Pattern.compile("全部应用")));
@@ -947,6 +947,7 @@ public class LetvTestCase{
         map.put(AppName.Feedback ,PkgName.Feedback);
         map.put(AppName.Tool ,PkgName.Tool);
         map.put(AppName.ChildrenTV ,PkgName.ChildrenTV);
+        map.put(AppName.WatchingHot ,PkgName.WatchingHot);
         return map;
     }
 }
