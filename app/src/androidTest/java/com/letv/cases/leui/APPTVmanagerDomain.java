@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 
 
-public class APPTVmanagerStress extends LetvTestCase{
+public class APPTVmanagerDomain extends LetvTestCase{
     int count=0;
     @Test
     @CaseName("电视管家测试")
