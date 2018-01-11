@@ -211,7 +211,7 @@ public class LeTVStress extends LetvTestCase{
         sleepInt(2);
     }
 
-    public void updateLeTV() throws UiObjectNotFoundException {
+     public void updateLeTV() throws UiObjectNotFoundException {
         UiObject2 UpdateButton = phone.findObject(By.textContains("立即升级"));
         if (UpdateButton!=null) {
             addStep("出现升级界面，开始升级");
