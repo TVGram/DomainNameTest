@@ -22,7 +22,6 @@ public class DesktipSingalSourceDomain extends LetvTestCase {
 
     @Test
     @CaseName("信号源桌面热门推荐")
-
     public void testSingalSourceHot() throws UiObjectNotFoundException,RemoteException{
         addStep("切换到信号源桌面");
         gotoHomeScreen("首页");
@@ -65,7 +64,7 @@ public class DesktipSingalSourceDomain extends LetvTestCase {
         addStep("切换到信号源桌面");
         gotoHomeScreen("首页");
         press_left(2);
-        press_back(2);
+        press_back(3);
         try {
             SignalsourcelWonderful();
         } catch (Exception e) {
@@ -103,7 +102,7 @@ public class DesktipSingalSourceDomain extends LetvTestCase {
         addStep("切换到信号源桌面");
         gotoHomeScreen("首页");
         press_left(2);
-        press_back(2);
+        press_back(3);
         try {
             SignalsourcelAll();
         } catch (Exception e) {
