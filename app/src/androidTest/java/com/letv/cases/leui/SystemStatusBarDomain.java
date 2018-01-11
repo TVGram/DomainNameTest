@@ -14,7 +14,7 @@ import org.junit.Test;
 
 import java.util.regex.Pattern;
 
-public class StatusBarStress extends LetvTestCase {
+public class SystemStatusBarDomain extends LetvTestCase {
 
     int count =0;
     @Test
@@ -24,8 +24,6 @@ public class StatusBarStress extends LetvTestCase {
         addStep("进入状态栏");
         press_up(4);
         sleepInt(2);
-        for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
-            addStep(".............looper : "+(Loop+1));
             try {
                 StatusBar();
             }catch (Exception e){
@@ -39,7 +37,6 @@ public class StatusBarStress extends LetvTestCase {
                     junit.framework.Assert.fail(re.getMessage());
                 }
             }
-        }
         addStep("退出状态栏");
         press_back(1);
     }
@@ -55,6 +52,8 @@ public class StatusBarStress extends LetvTestCase {
             addStep("客厅画面");
             magazine_icon.click();
             magazine_icon.click();
+            press_right(2);
+            press_left(2);
             sleepInt(2);
             press_back(1);
             sleepInt(1);
