@@ -14,7 +14,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-public class HousekeeperStress extends LetvTestCase{
+public class APPHousekeeperDomain extends LetvTestCase{
     int count=0;
 
     @Test
@@ -22,8 +22,6 @@ public class HousekeeperStress extends LetvTestCase{
     public void testHousekeeper() throws UiObjectNotFoundException,RemoteException{
         addStep("进入电视管家应用");
         launchApp(AppName.Housekeeper, IntentConstants.Housekeeper);
-        for (int Loop = 0; Loop < getIntParams("Loop");Loop++) {
-            addStep(".............looper : " + Loop);
             try{
                 Housekeeper();
             }
@@ -41,10 +39,7 @@ public class HousekeeperStress extends LetvTestCase{
 
                 }
             }
-        }
     }
-
-
 
     public void Housekeeper()throws UiObjectNotFoundException,RemoteException{
         UiObject2 oneKey = waitForObj(By.text("一键体检"));
