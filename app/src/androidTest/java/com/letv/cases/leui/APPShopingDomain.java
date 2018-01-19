@@ -8,7 +8,9 @@ import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
 
+import com.letv.common.AppName;
 import com.letv.common.CaseName;
+import com.letv.common.IntentConstants;
 import com.letv.common.LetvTestCase;
 
 import junit.framework.Assert;
@@ -24,10 +26,11 @@ public class APPShopingDomain  extends LetvTestCase {
     @Test
     @CaseName("进入购物应用浏览海报")
     public void testApplicationLeShop()throws UiObjectNotFoundException,RemoteException {
-//        launchApp(AppName.Shop, IntentConstants.Shop);
+        gotoHomeScreen("应用");
+        launchApp(AppName.Shop, IntentConstants.Shop);
         addStep("进入应用购物");
-//        AccountLogin();
-        appshopTV();
+        AccountLogin();
+//        appshopTV();
             try {
                 ApplicationLeShop();
             } catch (Exception e) {

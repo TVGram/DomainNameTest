@@ -5,7 +5,9 @@ import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 
+import com.letv.common.AppName;
 import com.letv.common.CaseName;
+import com.letv.common.IntentConstants;
 import com.letv.common.LetvTestCase;
 
 import junit.framework.Assert;
@@ -40,6 +42,7 @@ public class APPLeChildrenDomain extends LetvTestCase {
     public void ChileSwichover() throws UiObjectNotFoundException, RemoteException {
         addStep("进入儿童TV");
         LanuchChildrenTV();
+        launchApp(AppName.Weather, IntentConstants.WeatherCIBN);
         UiObject2 skip=waitForObj(By.res("com.letv.tv.lechild:id/register_sex_btn_skip"));
         if(skip!=null){
             skip.click();

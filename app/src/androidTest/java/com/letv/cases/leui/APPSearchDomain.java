@@ -23,13 +23,13 @@ public class APPSearchDomain extends LetvTestCase {
     @CaseName("进入应用搜索")
     public void testAPPSearchPoster() throws UiObjectNotFoundException, RemoteException {
         try {
-            AppSearch();
+//            AppSearch();
             SearchPoster();
         } catch (Exception e) {
             try {
                 count++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
-                AppSearch();
+//                AppSearch();
                 SearchPoster();
             } catch (RuntimeException re) {
                 screenShot();
@@ -39,7 +39,7 @@ public class APPSearchDomain extends LetvTestCase {
         press_back(4);
     }
     public void SearchPoster() throws UiObjectNotFoundException, RemoteException {
-//        launchApp(AppName.LeSo, IntentConstants.LeSo);
+        launchApp(AppName.LeSo, IntentConstants.LeSo);
         press_down(4);
         press_right(4);
         press_down(1);
@@ -48,13 +48,13 @@ public class APPSearchDomain extends LetvTestCase {
         press_up(4);
         press_back(3);
     }
+
     public void AppSearch()throws UiObjectNotFoundException, RemoteException{
-        addStep("霸屏榜");
+        addStep("搜索");
         gotoHomeScreen("应用");
         press_down(5);
         UiObject2 watchingHot=waitForObj(By.res("com.stv.plugin.app:id/cellview_label").text("万象搜索"));
         watchingHot.click();
         watchingHot.click();
     }
-
 }

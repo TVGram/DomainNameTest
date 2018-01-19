@@ -24,15 +24,13 @@ public class APPWatchingHotDomain extends LetvTestCase {
     @CaseName("霸屏榜进入")
     public void testWatchingHotEnter() throws UiObjectNotFoundException, RemoteException {
         addStep("打应用");
-//        launchApp(AppName.WatchingHot, PkgName.WatchingHot);
-
         try {
-            WatchingHot();
+           launchApp(AppName.WatchingHot, IntentConstants.WatchingHot);
         } catch (Exception e) {
             try {
                 count++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
-                WatchingHot();
+                launchApp(AppName.WatchingHot, IntentConstants.WatchingHot);
             } catch (RuntimeException re) {
                 screenShot();
                 org.junit.Assert.fail(re.getMessage());
@@ -45,8 +43,8 @@ public class APPWatchingHotDomain extends LetvTestCase {
     @CaseName("霸屏榜霸屏海报浏览")
     public void testWatchingHotPoster() throws UiObjectNotFoundException, RemoteException {
         addStep("打应用");
-//        launchApp(AppName.WatchingHot, PkgName.WatchingHot);
-        WatchingHot();
+        launchApp(AppName.WatchingHot, IntentConstants.WatchingHot);
+//        WatchingHot();
         try {
             WatchingHotPoster();
         } catch (Exception e) {
@@ -74,8 +72,8 @@ public class APPWatchingHotDomain extends LetvTestCase {
     @CaseName("霸屏榜排行分类")
     public void testWatchingHotClassification() throws UiObjectNotFoundException, RemoteException {
         addStep("打应用");
-//        launchApp(AppName.WatchingHot, PkgName.WatchingHot);
-        WatchingHot();
+        launchApp(AppName.WatchingHot, IntentConstants.WatchingHot);
+//        WatchingHot();
         try {
             WatchingHotClassification();
         } catch (Exception e) {
@@ -104,8 +102,8 @@ public class APPWatchingHotDomain extends LetvTestCase {
     @CaseName("霸屏榜霸屏电影")
     public void testWatchingHotMovie() throws UiObjectNotFoundException, RemoteException {
         addStep("打应用");
-//        launchApp(AppName.WatchingHot, PkgName.WatchingHot);
-        WatchingHot();
+        launchApp(AppName.WatchingHot, IntentConstants.WatchingHot);
+//        WatchingHot();
         try {
             WatchingHotMovie();
         } catch (Exception e) {
@@ -151,8 +149,8 @@ public class APPWatchingHotDomain extends LetvTestCase {
     @CaseName("霸屏榜霸屏电视剧")
     public void testWatchingHotTVseries() throws UiObjectNotFoundException, RemoteException {
         addStep("打应用");
-//        launchApp(AppName.WatchingHot, PkgName.WatchingHot);
-        WatchingHot();
+        launchApp(AppName.WatchingHot, IntentConstants.WatchingHot);
+//        WatchingHot();
         try {
             WatchingHotTVseries();
         } catch (Exception e) {
@@ -201,8 +199,8 @@ public class APPWatchingHotDomain extends LetvTestCase {
     @CaseName("霸屏榜霸屏节目")
     public void testWatchingHotShow() throws UiObjectNotFoundException, RemoteException {
         addStep("打应用");
-//        launchApp(AppName.WatchingHot, PkgName.WatchingHot);
-        WatchingHot();
+        launchApp(AppName.WatchingHot, IntentConstants.WatchingHot);
+//        WatchingHot();
         try {
             WatchingHotShow();
         } catch (Exception e) {

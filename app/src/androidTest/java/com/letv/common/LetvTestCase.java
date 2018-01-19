@@ -786,7 +786,7 @@ public class LetvTestCase{
                 sleepInt(5);
                 return true;
             }
-            press_down(2);
+            press_down(1);
         }
         sleepInt(5);
         UiObject2 allapp=phone.findObject(By.text(Pattern.compile("全部应用")));
@@ -803,7 +803,7 @@ public class LetvTestCase{
                 sleepInt(5);
             }
         }
-
+        press_down(3);
         // launchapp by package
         if(Build.VERSION.SDK_INT >20) {
             if (pkg.equals("") || pkg == null) {
