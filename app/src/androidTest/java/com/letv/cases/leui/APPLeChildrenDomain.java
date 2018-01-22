@@ -63,5 +63,4 @@ public class APPLeChildrenDomain extends LetvTestCase {
         clickAndWaitForNewWindow(ChildrenTV);
         sleepInt(2);
     }
-
 }
