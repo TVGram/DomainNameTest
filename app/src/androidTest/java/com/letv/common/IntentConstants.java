@@ -57,4 +57,5 @@ public class IntentConstants {
 	public static final String Tool = "com.stv.message/.MainActivity";
 	public static final String ChildrenTV ="com.letv.tv/letv.plugin.framework.activity.HostActivity";
 	public static final String WatchingHot="com.stv.watchinghot/.MainActivity";
+	public static final String hunantv="com.hunantv.license/com.starcor.hunan.MainPageActivity";
 }

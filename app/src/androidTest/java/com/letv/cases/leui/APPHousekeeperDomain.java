@@ -9,6 +9,7 @@ import com.letv.common.AppName;
 import com.letv.common.CaseName;
 import com.letv.common.IntentConstants;
 import com.letv.common.LetvTestCase;
+import com.letv.common.PkgName;
 
 import junit.framework.Assert;
 
@@ -72,4 +73,29 @@ public class APPHousekeeperDomain extends LetvTestCase{
         press_back(1);
 //            verify("未能退出到桌面", phone.getCurrentPackageName().equals(PACKAGE_HOME));
     }
+
+
+
+    @Test
+    @CaseName("电视管家进行多次一键体检和清理内存以及清除数据")
+    public void testHunantv() throws UiObjectNotFoundException,RemoteException{
+        addStep("进入芒果TV");
+        try{
+            launchApp(AppName.hunantv, IntentConstants.hunantv);
+        }
+        catch (Exception e){
+            try{
+                count++;
+                failCount(count,getIntParams("Loop"),e.getMessage());
+                addStep("进入电视管家应用");
+                launchApp(AppName.hunantv, IntentConstants.hunantv);
+            }
+            catch (RuntimeException re){
+                screenShot();
+                Assert.fail(re.getMessage());
+
+            }
+        }
+    }
+
 }
