@@ -20,6 +20,72 @@ public class DesktopShoppingDomain extends LetvTestCase{
     int count;
 
 
+    @Test
+    @CaseName("进入桌面管理调整桌面购物")
+    public void testDeskSwitchShoping() throws UiObjectNotFoundException, RemoteException {
+        addStep("进入管理桌面");
+        gotoHomeScreen("应用");
+        UiObject2 deskManager = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
+        check("桌面管理没有找到", deskManager != null);
+        deskManager.click();
+        deskManager.click();
+        sleepInt(1);
+        try {
+//              if (LetvUI(6.5)){
+            DeskSwitchShoping();
+//                }else {
+//                DeskSwitch();
+//                }
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                DeskSwitchShoping();
+            } catch (RuntimeException re) {
+                screenShot();
+                junit.framework.Assert.fail(re.getMessage());
+            }
+            press_back(2);
+        }
+    }
+    public void DeskSwitchShoping() throws UiObjectNotFoundException, RemoteException {
+
+        for(int i =0;i<4;i++) {
+            sleepInt(2);
+            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("应用")).getParent();
+            if(launchLeVideo.isFocused()){
+                press_center(1);
+                press_right(3);
+                press_center(1);
+                press_left(1);
+                press_center(1);
+                press_right(3);
+                press_down(1);
+                press_center(1);
+                break;
+            }
+            else {
+                press_right(1);
+            }
+        }
+        sleepInt(2);
+        for(int j=0;j<3;j++) {
+            sleepInt(2);
+            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("购物")).getParent();
+            if(launchLeVideo.isFocused()){
+                press_center(1);
+                press_up(1);
+                press_right(3);
+                press_center(1);
+                break;
+            }
+            else {
+                press_left(1);
+            }
+        }
+
+    }
+
 
     @Test
     @CaseName("进入购物桌面海报")
@@ -42,15 +108,57 @@ public class DesktopShoppingDomain extends LetvTestCase{
     public void LeShopPoster()throws UiObjectNotFoundException,RemoteException{
         press_back(2);
         addStep("进入购物桌面海报浏览");
+        press_down(1);
+        UiObject2 child_view0=waitForObj(By.res("com.stv.shopping:id/child_view0"));
+        check("未进入面海报浏览0",child_view0!=null);
+        child_view0.click();
+        child_view0.click();
+        sleepInt(1);
+        press_back(3);
+
+        press_down(1);
+        UiObject2 child_view1=waitForObj(By.res("com.stv.shopping:id/child_view1"));
+        check("未进入面海报浏览0",child_view1!=null);
+        child_view1.click();
+        child_view1.click();
+        sleepInt(1);
+        press_back(3);
+
+
+        press_down(1);
+        UiObject2 child_view2=waitForObj(By.res("com.stv.shopping:id/child_view2"));
+        check("未进入面海报浏览0",child_view2!=null);
+        child_view2.click();
+        child_view2.click();
+        sleepInt(1);
+        press_back(3);
+
+        press_down(1);
+        UiObject2 child_view6=waitForObj(By.res("com.stv.shopping:id/child_view6"));
+        check("未进入面海报浏览0",child_view6!=null);
+        child_view6.click();
+        child_view6.click();
+        sleepInt(1);
+        press_back(3);
+
+        press_down(1);
+        UiObject2 child_view7=waitForObj(By.res("com.stv.shopping:id/child_view7"));
+        check("未进入面海报浏览0",child_view2!=null);
+        child_view7.click();
+        child_view7.click();
+        sleepInt(1);
+        press_back(3);
+
         for (int i=3;i<8;i++) {
             press_down(i);
-            int GameDesk = phone.findObject(By.text(Pattern.compile("直降专区"))).getParent().getChildCount() - 4;
+            int GameDesk = phone.findObject(By.text(Pattern.compile("直降专区"))).getParent().getChildCount()-3;
             check("未进入直降专区", GameDesk != 0);
-            press_right(GameDesk);
-            press_center(1);
-            sleepInt(5);
-            press_back(1);
-            press_left(GameDesk);
+            for(int j=0;j<GameDesk;j++) {
+                press_right(1);
+                press_center(1);
+                sleepInt(5);
+                press_back(1);
+            }
             press_back(3);
             desktop();
         }

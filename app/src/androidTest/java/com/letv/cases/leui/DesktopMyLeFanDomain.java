@@ -16,6 +16,74 @@ import java.util.regex.Pattern;
 public class DesktopMyLeFanDomain extends LetvTestCase{
     int count=0;
 
+
+
+    @Test
+    @CaseName("进入桌面管理调整桌面我的乐范")
+    public void testDeskSwitchMyLefan() throws UiObjectNotFoundException, RemoteException {
+        addStep("进入管理桌面");
+        gotoHomeScreen("应用");
+        UiObject2 deskManager = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
+        check("桌面管理没有找到", deskManager != null);
+        deskManager.click();
+        deskManager.click();
+        sleepInt(1);
+        try {
+//              if (LetvUI(6.5)){
+            DeskSwitchScarchMyLefan();
+//                }else {
+//                DeskSwitch();
+//                }
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                DeskSwitchScarchMyLefan();
+            } catch (RuntimeException re) {
+                screenShot();
+                junit.framework.Assert.fail(re.getMessage());
+            }
+            press_back(2);
+        }
+    }
+    public void DeskSwitchScarchMyLefan() throws UiObjectNotFoundException, RemoteException {
+
+        for(int i =0;i<4;i++) {
+            sleepInt(2);
+            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("应用")).getParent();
+            if(launchLeVideo.isFocused()){
+                press_center(1);
+                press_right(3);
+                press_center(1);
+                press_left(1);
+                press_center(1);
+                press_right(3);
+                press_down(1);
+                press_center(1);
+                break;
+            }
+            else {
+                press_right(1);
+            }
+        }
+        sleepInt(2);
+        for(int j=0;j<3;j++) {
+            sleepInt(2);
+            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("我的乐范")).getParent();
+            if(launchLeVideo.isFocused()){
+                press_center(1);
+                press_up(1);
+                press_right(3);
+                press_center(1);
+                break;
+            }
+            else {
+                press_left(1);
+            }
+        }
+
+    }
+
     @Test
     @CaseName("我的乐范海报")
     public void testmyLeFanPoster()throws UiObjectNotFoundException,RemoteException{
@@ -36,32 +104,33 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
         }
     }
     public void myLeFanPoster()throws UiObjectNotFoundException,RemoteException{
-        for (int i=1;i<=4;i++){
-            sleepInt(1);
-            if (i==1) {
-                press_down(i);
-                press_right(1);
-                press_back(3);
-            }
-            if (i==2) {
-                press_down(i);
-                press_right(5);
-                press_back(3);
-            }
-            if (i==3) {
-                press_down(i);
-                press_right(5);
-                press_back(3);
-            }
-            if (i==4) {
-                press_down(i);;
-                press_right(1);
-                press_back(3);
-            }
-            desktop();
+        sleepInt(1);
+        press_down(1);
+        press_center(1);
+        press_back(3);
+
+        for (int j=1;j<6;j++) {
+            press_down(2);
+            press_right(j);
+            UiObject2 uti1 = waitForObj(By.res("com.stv.plugin.ucenter:id/privilege_item"+(j+1)));
+            uti1.click();
+            uti1.click();
+            press_back(3);
+            sleepInt(3);
         }
 
+        sleepInt(1);
+        press_down(4);
+        press_center(1);
+        press_back(3);
+
+        sleepInt(1);
+        press_down(4);
+        press_center(1);
+        press_left(1);
+        press_back(3);
     }
+
     public void desktop()throws UiObjectNotFoundException, RemoteException{
         sleepInt(4);
         exitApp();
@@ -240,6 +309,7 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
 
 
     }
+
 
 
 

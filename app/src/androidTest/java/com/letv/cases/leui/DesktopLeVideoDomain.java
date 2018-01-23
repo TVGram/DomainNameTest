@@ -103,7 +103,6 @@ public class DesktopLeVideoDomain extends LetvTestCase {
     public void testDesktopLePosters() throws UiObjectNotFoundException , RemoteException {
         gotoHomeScreen("乐见");
         press_back(3);
-        press_down(1);
         try {
             LePosters();
         }catch (Exception e){
@@ -122,12 +121,20 @@ public class DesktopLeVideoDomain extends LetvTestCase {
     public void LePosters() throws UiObjectNotFoundException , RemoteException {
         addStep("进入视频桌面海报浏览");
         press_down(1);
-        press_down(3);
-        for (int i=0;i<10;i++){
-            press_right(2);
-            press_left(2);
-            press_down(1);
-            desktopVodplay();
+        press_center(1);
+        sleepInt(3);
+        exitApp();
+        press_back(3);
+        for(int j=0;j<8;j++) {
+            for (int i = 0; i < 3; i++) {
+                press_down(4+j);
+                press_right(i);
+                press_center(1);
+                sleepInt(4);
+                press_home(1);
+                press_back(3);
+                desktopVodplay();
+            }
         }
     }
 
