@@ -28,6 +28,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
         phone.removeWatcher("continueSee");
     }
 
+
     private final UiWatcher continueSee = new UiWatcher() {
         public boolean checkForCondition() {
             UiObject2 continueSeeing = phone.findObject(By.text(Pattern.compile("无品质继续.*")));

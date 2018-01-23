@@ -154,7 +154,6 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
         desktop();
         press_back(3);
     }
-
     @Test
     @CaseName("进入儿童桌面海报浏览")
     public void testChildDesktopPoster() throws UiObjectNotFoundException, RemoteException {
@@ -183,16 +182,20 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
         press_down(4);
         for (int i =0;i<5;i++){
             sleepInt(2);
+
             press_down(1);
             press_right(3);
+
+
+            press_center(1);
+            press_back(2);
+
             press_left(3);
             UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
             UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
             verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
         }
     }
-
-
 
 
 
