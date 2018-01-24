@@ -84,8 +84,6 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
         press_back(3);
     }
 
-
-
     @Test
     @CaseName("进入桌面管理调整桌面我的乐范")
     public void testDeskSwitchMyLefan() throws UiObjectNotFoundException, RemoteException {
