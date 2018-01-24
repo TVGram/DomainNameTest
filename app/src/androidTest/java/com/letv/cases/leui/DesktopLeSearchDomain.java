@@ -44,6 +44,12 @@ public class DesktopLeSearchDomain extends LetvTestCase{
             try {
                 count++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("应用");
+                UiObject2 deskManager1 = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
+                check("桌面管理没有找到", deskManager1 != null);
+                deskManager1.click();
+                deskManager1.click();
+                sleepInt(1);
                 DeskSwitchScarch();
             } catch (RuntimeException re) {
                 screenShot();

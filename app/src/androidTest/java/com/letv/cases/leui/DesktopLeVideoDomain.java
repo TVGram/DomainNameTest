@@ -64,6 +64,12 @@ public class DesktopLeVideoDomain extends LetvTestCase {
             try {
                 count++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("应用");
+                UiObject2 deskManager1 = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
+                check("桌面管理没有找到", deskManager1 != null);
+                deskManager1.click();
+                deskManager1.click();
+                sleepInt(1);
                 DeskSwitchLeVideo();
             } catch (RuntimeException re) {
                 screenShot();
@@ -95,7 +101,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
         sleepInt(2);
         for(int j=0;j<3;j++) {
             sleepInt(2);
-            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("购物")).getParent();
+            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("乐见")).getParent();
             if(launchLeVideo.isFocused()){
                 press_center(1);
                 press_up(1);

@@ -16,6 +16,74 @@ import java.util.regex.Pattern;
 public class DesktopMyLeFanDomain extends LetvTestCase{
     int count=0;
 
+    @Test
+    @CaseName("我的乐范个人帐号和全部特权遍历")
+    public void testmyLeFan()throws UiObjectNotFoundException,RemoteException{
+        addStep("进入我的乐范");
+        gotoHomeScreen("我的乐范");
+
+            try {
+                mylefan();
+            } catch (Exception e) {
+                try {
+                    count++;
+                    failCount(count, getIntParams("Loop"), e.getMessage());
+                    gotoHomeScreen("我的乐范");
+                    mylefan();
+                } catch (RuntimeException re) {
+                    screenShot();
+                    Assert.fail(re.getMessage());
+                }
+            }
+
+    }
+    public void mylefan()throws UiObjectNotFoundException,RemoteException{
+        press_down(1);
+        sleepInt(1);
+        UiObject2 presonPrivilege=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.ucenter:id/focus_layout"));
+        check("未进入个人特权",presonPrivilege !=null);
+        presonPrivilege.click();
+        presonPrivilege.click();
+        press_left(2);
+        UiObject2 allPrivilege=phone.findObject(By.text("全部特权"));
+        check("未进入全部特权",allPrivilege!=null);
+        String arrprivilege[]={"福利特权","购物特权","续费特权","金融特权","服务特权","游戏特权"};
+        for (int j = 1; j < arrprivilege.length; j++) {
+            press_left(3);
+            UiObject2 priv = waitForObj(By.clazz("android.widget.RadioButton").text(arrprivilege[j]));
+            check("未进入" + arrprivilege[j], priv != null);
+            press_down(1);
+            press_right(1);
+            press_center(1);
+            sleepInt(3);
+            press_back(1);
+            sleepInt(1);
+
+            press_right(1);
+            press_center(1);
+            sleepInt(3);
+            press_back(1);
+            sleepInt(1);
+
+        }
+        press_left(2);
+        press_up(7);
+        press_right(1);
+        press_center(1);
+        sleepInt(3);
+        press_back(1);
+        sleepInt(1);
+
+        press_right(1);
+        press_center(1);
+        sleepInt(3);
+        press_back(1);
+        sleepInt(1);
+
+
+        press_back(3);
+    }
+
 
 
     @Test
@@ -38,6 +106,13 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
             try {
                 count++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
+                addStep("进入管理桌面");
+                gotoHomeScreen("应用");
+                UiObject2 deskManager1 = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
+                check("桌面管理没有找到", deskManager1 != null);
+                deskManager1.click();
+                deskManager1.click();
+                sleepInt(1);
                 DeskSwitchScarchMyLefan();
             } catch (RuntimeException re) {
                 screenShot();

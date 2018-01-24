@@ -43,7 +43,7 @@ public class DesktopManger extends LetvTestCase {
     public void testDeskSwitchLeVideo() throws UiObjectNotFoundException, RemoteException {
         addStep("进入管理桌面");
         gotoHomeScreen("应用");
-        UiObject2 deskManager = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
+        UiObject2 deskManager = waitForObj(By.clazz("android.widget.ImageButton").res("com.stv.launcher:id/manager_bt"));
         check("桌面管理没有找到", deskManager != null);
         deskManager.click();
         deskManager.click();
@@ -67,7 +67,6 @@ public class DesktopManger extends LetvTestCase {
         }
     }
     public void DeskSwitchLeVideo() throws UiObjectNotFoundException, RemoteException {
-
         for(int i =0;i<4;i++) {
             sleepInt(2);
             UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("应用")).getParent();
@@ -89,7 +88,7 @@ public class DesktopManger extends LetvTestCase {
         sleepInt(2);
         for(int j=0;j<3;j++) {
             sleepInt(2);
-            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("购物")).getParent();
+            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("乐见")).getParent();
             if(launchLeVideo.isFocused()){
                 press_center(1);
                 press_up(1);
