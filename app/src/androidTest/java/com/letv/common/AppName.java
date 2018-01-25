@@ -52,5 +52,6 @@ public class AppName {
     public static final String Tool = "工具";
     public static final String ChildrenTV = "儿童TV";
     public static final String WatchingHot = "霸屏榜";
-    public static final String hunantv="芒果TV";
+    public static final String Hunantv= "芒果TV";
+    public static final String LeFan="我的乐范";
 }

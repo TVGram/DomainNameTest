@@ -75,27 +75,4 @@ public class APPHousekeeperDomain extends LetvTestCase{
     }
 
 
-
-    @Test
-    @CaseName("电视管家进行多次一键体检和清理内存以及清除数据")
-    public void testHunantv() throws UiObjectNotFoundException,RemoteException{
-        addStep("进入芒果TV");
-        try{
-            launchApp(AppName.hunantv, IntentConstants.hunantv);
-        }
-        catch (Exception e){
-            try{
-                count++;
-                failCount(count,getIntParams("Loop"),e.getMessage());
-                addStep("进入电视管家应用");
-                launchApp(AppName.hunantv, IntentConstants.hunantv);
-            }
-            catch (RuntimeException re){
-                screenShot();
-                Assert.fail(re.getMessage());
-
-            }
-        }
-    }
-
 }

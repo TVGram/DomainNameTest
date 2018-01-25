@@ -202,6 +202,7 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
     @CaseName("LetvStore应用Update")
     public void testLetvStoreUpdate() throws UiObjectNotFoundException, RemoteException {
         addStep("打开LetvStore");
+        gotoHomeScreen("应用");
         launchApp(AppName.LeStore, IntentConstants.LeStore);
         try{
             LetvStoreUpdate();
@@ -210,6 +211,7 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
             try{
                 count++;
                 failCount(count,getIntParams("Loop"),e.getMessage());
+                gotoHomeScreen("应用");
                 launchApp(AppName.LeStore, IntentConstants.LeStore);
                 LetvStoreUpdate();
             }
@@ -247,14 +249,16 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
             }
         }
         exitApp();
+        press_home(1);
+        gotoHomeScreen("应用");
         press_back(3);
-        press_down(3);
-        UiObject2 cinbapp = waitForObj(By.res("com.stv.plugin.app:id/cellview_label").text("CIBN高清影视"));
+        press_down(1);
+        UiObject2 cinbapp = waitForObj(By.res(Pattern.compile("com.stv.plugin.app:id/poster_cellview_label|com.stv.plugin.app:id/cellview_label")).text("CIBN高清影视"));
         check("未进入CIBN高清影视",cinbapp!=null);
         cinbapp.click();
         cinbapp.click();
 
-        UiObject2 cibndownapp = waitForObj(By.res("com.letv.tvos.appstore:id/downloadTV").text("下载"));
+        UiObject2 cibndownapp = waitForObj(By.res(Pattern.compile("com.letv.tvos.appstore:id/downloadTV")).text("下载"));
         if (cibndownapp!=null) {
             check("未进入下载", cibndownapp != null);
             cibndownapp.click();
@@ -262,6 +266,19 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
         }
         exitApp();
 
+        gotoHomeScreen("应用");
+        press_back(3);
+        press_down(1);
+        UiObject2 hushuoapp = waitForObj(By.res(Pattern.compile("com.stv.plugin.app:id/poster_cellview_label")).text("华数TV"));
+        check("未进入华数TV",cinbapp!=null);
+        hushuoapp.click();
+        hushuoapp.click();
+        UiObject2 agree = waitForObj(By.res("cn.com.wasu.main:id/btn_agree").text("同意"));
+        if(agree!=null){
+            agree.click();
+            agree.click();
+        }
+        exitApp();
     }
 
 

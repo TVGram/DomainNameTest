@@ -10,6 +10,7 @@ import com.letv.common.AppName;
 import com.letv.common.CaseName;
 import com.letv.common.IntentConstants;
 import com.letv.common.LetvTestCase;
+import com.letv.common.PkgName;
 
 import junit.framework.Assert;
 
@@ -19,16 +20,17 @@ public class APPhunanTVDomain extends LetvTestCase {
         int count=0;
 
         @Test
-        @CaseName("进入儿童TV反复进入与切换画面")
-        public void testChileSwichover() throws UiObjectNotFoundException, RemoteException {
+        @CaseName("进入APP芒果TV")
+        public void testHunanTV() throws UiObjectNotFoundException, RemoteException {
+            gotoHomeScreen("应用");
         try{
-            ChileSwichover();
+            HunanTV();
         }
         catch (Exception e){
             try{
                 count++;
                 failCount(count,getIntParams("Loop"),e.getMessage());
-                ChileSwichover();
+                HunanTV();
             }
             catch (RuntimeException re){
                 screenShot();
@@ -36,11 +38,12 @@ public class APPhunanTVDomain extends LetvTestCase {
             }
         }
         press_back(5);
-    }
-    public void ChileSwichover() throws UiObjectNotFoundException, RemoteException {
-        addStep("进入儿童TV");
-        launchApp(AppName.hunantv, IntentConstants.hunantv);
-
-    }
+         }
+        public void HunanTV() throws UiObjectNotFoundException, RemoteException {
+            addStep("进入APP芒果TV");
+            launchApp(AppName.Hunantv, IntentConstants.Hunantv);
+            sleepInt(10);
+            press_right(5);
+         }
 
 }

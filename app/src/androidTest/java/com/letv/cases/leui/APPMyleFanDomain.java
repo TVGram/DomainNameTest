@@ -2,104 +2,38 @@ package com.letv.cases.leui;
 
 import android.os.Build;
 import android.os.RemoteException;
-import android.provider.Contacts;
 import android.support.test.uiautomator.By;
 import android.support.test.uiautomator.UiObject;
 import android.support.test.uiautomator.UiObject2;
 import android.support.test.uiautomator.UiObjectNotFoundException;
 import android.support.test.uiautomator.UiSelector;
+
+import com.letv.common.AppName;
 import com.letv.common.CaseName;
+import com.letv.common.IntentConstants;
 import com.letv.common.LetvTestCase;
+
 import junit.framework.Assert;
+
 import org.junit.Test;
+
 import java.util.regex.Pattern;
-public class DesktopMyLeFanDomain extends LetvTestCase{
+
+/**
+ * Created by pc7 on 1/25/18.
+ */
+
+public class APPMyleFanDomain extends LetvTestCase {
     int count=0;
 
 
-    @Test
-    @CaseName("进入桌面管理调整桌面我的乐范")
-    public void testDeskSwitchMyLefan() throws UiObjectNotFoundException, RemoteException {
-        addStep("进入管理桌面");
-        gotoHomeScreen("应用");
-        UiObject2 deskManager = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
-        check("桌面管理没有找到", deskManager != null);
-        deskManager.click();
-        deskManager.click();
-        sleepInt(1);
-        try {
-            DeskSwitchScarchMyLefan();
-        } catch (Exception e){
-            try {
-                count++;
-                failCount(count, getIntParams("Loop"), e.getMessage());
-                addStep("进入管理桌面");
-                gotoHomeScreen("应用");
-                UiObject2 deskManager1 = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
-                check("桌面管理没有找到", deskManager1 != null);
-                deskManager1.click();
-                deskManager1.click();
-                sleepInt(1);
-                DeskSwitchScarchMyLefan();
-            } catch (RuntimeException re) {
-                screenShot();
-                junit.framework.Assert.fail(re.getMessage());
-                addStep("进入管理桌面");
-                gotoHomeScreen("应用");
-                UiObject2 deskManager1 = waitForObj(By.res("com.stv.launcher:id/manager_bt"));
-                check("桌面管理没有找到", deskManager1 != null);
-                deskManager1.click();
-                deskManager1.click();
-                sleepInt(1);
-                DeskSwitchScarchMyLefan();
-            }
-            press_back(2);
-        }
-    }
-    public void DeskSwitchScarchMyLefan() throws UiObjectNotFoundException, RemoteException {
-
-        for(int i =0;i<4;i++) {
-            sleepInt(2);
-            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("应用")).getParent();
-            if(launchLeVideo.isFocused()){
-                press_center(1);
-                press_right(3);
-                press_center(1);
-                press_left(1);
-                press_center(1);
-                press_right(3);
-                press_down(1);
-                press_center(1);
-                break;
-            }
-            else {
-                press_right(1);
-            }
-        }
-        sleepInt(2);
-        for(int j=0;j<4;j++) {
-            sleepInt(2);
-            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("我的乐范")).getParent();
-            if(launchLeVideo.isFocused()){
-                press_center(1);
-                press_up(1);
-                press_right(3);
-                press_center(1);
-                break;
-            }
-            else {
-                press_left(1);
-            }
-        }
-
-    }
 
 
     @Test
     @CaseName("我的乐范全部特权遍历海报")
     public void testmyLeFan()throws UiObjectNotFoundException,RemoteException{
         addStep("进入我的乐范");
-        gotoHomeScreen("我的乐范");
+        launchApp(AppName.LeFan, IntentConstants.Lefan);
         try {
             mylefan();
         } catch (Exception e) {
@@ -116,9 +50,7 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
 
     }
     public void mylefan()throws UiObjectNotFoundException,RemoteException{
-        press_down(1);
-        sleepInt(1);
-        UiObject2 presonPrivilege=waitForObj(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.ucenter:id/focus_layout"));
+        UiObject2 presonPrivilege=waitForObj(By.clazz("android.widget.RelativeLayout").res("com.stv.ucenter:id/focus_layout"));
         check("未进入个人特权",presonPrivilege !=null);
         presonPrivilege.click();
         presonPrivilege.click();
@@ -170,13 +102,13 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
             press_center(1);
             sleepInt(1);
             press_back(1);
-                UiObject2 desc1 = waitForObj(By.clazz("android.widget.Button").desc("确定放弃"));
-                if (desc1 != null) {
-                    desc1.click();
-                    desc1.click();
-                    press_down(3);
-                }
-                sleepInt(1);
+            UiObject2 desc1 = waitForObj(By.clazz("android.widget.Button").desc("确定放弃"));
+            if (desc1 != null) {
+                desc1.click();
+                desc1.click();
+                press_down(3);
+            }
+            sleepInt(1);
 
             press_right(1);
             press_center(1);
@@ -186,7 +118,7 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
             if (desc2 != null) {
                 desc2.click();
                 sleepInt(3);
-              press_down(4);
+                press_down(4);
             }
             sleepInt(1);
         }
@@ -256,17 +188,17 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
         gotoHomeScreen("我的乐范");
         try {
             myLeFanGrowth();
-            } catch (Exception e) {
-                try {
-                    count++;
-                    failCount(count, getIntParams("Loop"), e.getMessage());
-                    gotoHomeScreen("我的乐范");
-                    myLeFanGrowth();
-                } catch (RuntimeException re) {
-                    screenShot();
-                    Assert.fail(re.getMessage());
-                }
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("我的乐范");
+                myLeFanGrowth();
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
             }
+        }
     }
     public void myLeFanGrowth()throws UiObjectNotFoundException,RemoteException{
         press_down(1);
@@ -328,19 +260,19 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
     public void testPersonMyLeFan()throws UiObjectNotFoundException,RemoteException{
         addStep("进入我的乐范");
         gotoHomeScreen("我的乐范");
+        try {
+            PersonMyLeFan();
+        } catch (Exception e) {
             try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                gotoHomeScreen("我的乐范");
                 PersonMyLeFan();
-            } catch (Exception e) {
-                try {
-                    count++;
-                    failCount(count, getIntParams("Loop"), e.getMessage());
-                    gotoHomeScreen("我的乐范");
-                    PersonMyLeFan();
-                } catch (RuntimeException re) {
-                    screenShot();
-                    Assert.fail(re.getMessage());
-                }
+            } catch (RuntimeException re) {
+                screenShot();
+                Assert.fail(re.getMessage());
             }
+        }
         press_back(2);
     }
     public void PersonMyLeFan()throws UiObjectNotFoundException,RemoteException{
@@ -403,26 +335,7 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
         press_back(1);
         sleepInt(2);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
 
 
 
@@ -535,4 +448,5 @@ public class DesktopMyLeFanDomain extends LetvTestCase{
         superTV.click();
         sleepInt(2);
     }
+
 }

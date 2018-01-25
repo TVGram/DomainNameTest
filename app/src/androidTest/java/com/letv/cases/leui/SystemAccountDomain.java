@@ -53,14 +53,14 @@ public class SystemAccountDomain extends LetvTestCase{
 //        SuperTV();
         launchApp(AppName.LeAccount,IntentConstants.LeAccount);
             try {
-                if(LetvUI(6.5)){
-                    addStep("UI6.5");
+//                if(LetvUI(6.5)){
+//                    addStep("UI6.5");
                     AccountLogin938 ();
-                }else {
-                    addStep("UI5.9");
-                    AccountLogin();
-                }
-            }catch (Exception e){
+//                }else {
+//                    addStep("UI5.9");
+//                    AccountLogin();
+//                }
+                }catch (Exception e){
                 try {
                     count ++;
                     failCount(count, getIntParams("Loop"), e.getMessage());
@@ -68,13 +68,13 @@ public class SystemAccountDomain extends LetvTestCase{
                     launchApp(AppName.LeAccount,IntentConstants.LeAccount);
 //                    SuperTV();
                     sleepInt(2);
-                    if(LetvUI(6.0)){
-                        addStep("UI6.0");
+//                    if(LetvUI(6.0)){
+//                        addStep("UI6.0");
                         AccountLogin938();
-                    }else {
-                        addStep("UI5.9");
-                        AccountLogin();
-                    }
+//                    }else {
+//                        addStep("UI5.9");
+//                        AccountLogin();
+//                    }
                 }catch (RuntimeException re){
                     screenShot();
                     Assert.fail(re.getMessage());

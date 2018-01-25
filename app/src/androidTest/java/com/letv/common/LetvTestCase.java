@@ -948,6 +948,8 @@ public class LetvTestCase{
         map.put(AppName.Tool ,PkgName.Tool);
         map.put(AppName.ChildrenTV ,PkgName.ChildrenTV);
         map.put(AppName.WatchingHot ,PkgName.WatchingHot);
+        map.put(AppName.Hunantv ,PkgName.Hunantv);
+        map.put(AppName.LeFan ,PkgName.Lefan);
         return map;
     }
 }
