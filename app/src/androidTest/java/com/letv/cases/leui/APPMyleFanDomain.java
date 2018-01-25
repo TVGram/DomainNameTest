@@ -130,7 +130,7 @@ public class APPMyleFanDomain extends LetvTestCase {
     @CaseName("我的乐范海报")
     public void testmyLeFanPoster()throws UiObjectNotFoundException,RemoteException{
         addStep("进入我的乐范");
-        gotoHomeScreen("我的乐范");
+        launchApp(AppName.LeFan, IntentConstants.Lefan);
         try {
             myLeFanPoster();
         } catch (Exception e) {
@@ -185,7 +185,7 @@ public class APPMyleFanDomain extends LetvTestCase {
     @CaseName("我的乐范成长值")
     public void testmyLeFanGrowth()throws UiObjectNotFoundException,RemoteException{
         addStep("进入我的乐范");
-        gotoHomeScreen("我的乐范");
+        launchApp(AppName.LeFan, IntentConstants.Lefan);
         try {
             myLeFanGrowth();
         } catch (Exception e) {
@@ -204,7 +204,8 @@ public class APPMyleFanDomain extends LetvTestCase {
         press_down(1);
         press_back(2);
         press_down(1);
-        UiObject2 personalGrowth=phone.findObject(By.clazz("android.widget.FrameLayout").res("com.stv.plugin.ucenter:id/login_message_layout"));
+        UiObject2 personalGrowth=phone.findObject(By.clazz("android.widget.RelativeLayout").res("com.stv.ucenter:id/login_message_layout"));
+        check("未进入我的乐范成长值",personalGrowth!=null);
         personalGrowth.click();
         personalGrowth.click();
         sleepInt(2);
@@ -227,7 +228,7 @@ public class APPMyleFanDomain extends LetvTestCase {
     @CaseName("我的乐范全部特权")
     public void testmyLeFanPrivilege()throws UiObjectNotFoundException,RemoteException{
         addStep("进入我的乐范");
-        gotoHomeScreen("我的乐范");
+        launchApp(AppName.LeFan, IntentConstants.Lefan);
         try {
             myLeFanPrivilege();
         } catch (Exception e) {
@@ -259,7 +260,7 @@ public class APPMyleFanDomain extends LetvTestCase {
     @CaseName("我的乐范中卡券、订单地、赠品、兑换、会员续费遍历")
     public void testPersonMyLeFan()throws UiObjectNotFoundException,RemoteException{
         addStep("进入我的乐范");
-        gotoHomeScreen("我的乐范");
+        launchApp(AppName.LeFan, IntentConstants.Lefan);
         try {
             PersonMyLeFan();
         } catch (Exception e) {
