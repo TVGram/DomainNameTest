@@ -70,7 +70,7 @@ public class APPLeSportsDomain extends LetvTestCase {
 
     @Test
     @CaseName("从应用进入超级体育")
-    public void testLanuchSport() throws UiObjectNotFoundException, RemoteException {
+    public void testLanuchSportEnter() throws UiObjectNotFoundException, RemoteException {
       try{
           LanuchSport();
       }
@@ -90,6 +90,7 @@ public class APPLeSportsDomain extends LetvTestCase {
         addStep("进入超级体育");
         launchApp(AppName.LeSports, IntentConstants.LeSports);
         upgrade();
+        press_up(1);
         press_right(5);
         addStep("退出超级体育");
         press_back(1);
@@ -99,13 +100,11 @@ public class APPLeSportsDomain extends LetvTestCase {
 
 
     @Test
-    @CaseName("超级体育视频反复播放")
+    @CaseName("超级体育视频播放")
     public void testEntryMatch() throws UiObjectNotFoundException ,RemoteException{
         addStep("进入超级体育");
         launchApp(AppName.LeSports, IntentConstants.LeSports);
-        upgrade();
-        press_right(1);
-        sleepInt(1);
+//        upgrade();
         try{
             EntryMatch();
         }
@@ -124,31 +123,58 @@ public class APPLeSportsDomain extends LetvTestCase {
         }
     }
     public void EntryMatch() throws UiObjectNotFoundException,RemoteException{
-            addStep("进入赛事");
-            sleepInt(2);
-            UiObject2 playing = waitForObj(By.res("com.lesports.tv:id/lesports_tab_game_hall").text("比赛大厅"));
-            verify("未进入比赛大厅",playing !=null);
-            playing.click();
-            press_down(3);
+
+        press_down(2);
+        addStep("进入赛事");
+        UiObject2 tv1=waitForObj(By.res("com.lesports.tv:id/view1"));
+        tv1.click();
+        tv1.click();
+        press_back(1);
+        sleepInt(3);
+
+        UiObject2 tv2=waitForObj(By.res("com.lesports.tv:id/view2"));
+        tv2.click();
+        tv2.click();
+        press_back(1);
+        sleepInt(3);
+
+
+        UiObject2 tv3=waitForObj(By.res("com.lesports.tv:id/view3"));
+        tv3.click();
+        tv3.click();
+        press_back(1);
+        sleepInt(3);
+
+
+
+
+        sleepInt(2);
+        press_up(2);
+        UiObject2 playing = waitForObj(By.res("com.lesports.tv:id/lesports_tab_game_hall").text("比赛大厅"));
+        verify("未进入比赛大厅",playing !=null);
+        playing.click();
+        press_down(3);
+        press_center(1);
+        sleepInt(10);
+        press_back(1);//退出播放
+        addStep("退出赛事播放");
+        UiObject2 exitplaying =waitForObj(By.text(Pattern.compile("退出播放")));
+        if (exitplaying !=null) {
+            exitplaying.click();
+            exitplaying.click();
+            sleepInt(1);
+        }
+        else {
+            press_left(1);
             press_center(1);
-            sleepInt(10);
-            press_back(1);//退出播放
-            addStep("退出赛事播放");
-            UiObject2 exitplaying =waitForObj(By.text(Pattern.compile("退出播放")));
-            if (exitplaying !=null) {
-                exitplaying.click();
-                exitplaying.click();
-                sleepInt(1);
-            }
-            else {
-                press_left(1);
-                press_center(1);
-                sleepInt(1);
-            }
+            sleepInt(1);
+        }
         press_back(3);
         sleepInt(1);
         exitAppt();
     }
+
+
 
 
 
