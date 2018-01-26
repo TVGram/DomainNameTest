@@ -87,7 +87,6 @@ public class APPLeSportsDomain extends LetvTestCase {
       }
     }
     public void LanuchSport()throws UiObjectNotFoundException,RemoteException{
-    for (int Loop = 0; Loop < getIntParams("Loop"); Loop++) {
         addStep("进入超级体育");
         launchApp(AppName.LeSports, IntentConstants.LeSports);
         upgrade();
@@ -96,8 +95,6 @@ public class APPLeSportsDomain extends LetvTestCase {
         press_back(1);
         sleepInt(2);
         exitAppt();
-    }
-
 }
 
 

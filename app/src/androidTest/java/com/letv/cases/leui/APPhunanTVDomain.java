@@ -45,5 +45,4 @@ public class APPhunanTVDomain extends LetvTestCase {
             sleepInt(10);
             press_right(5);
          }
-
 }
