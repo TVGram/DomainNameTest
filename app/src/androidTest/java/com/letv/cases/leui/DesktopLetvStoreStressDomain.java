@@ -202,7 +202,6 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
     @CaseName("LetvStore应用Update")
     public void testLetvStoreUpdate() throws UiObjectNotFoundException, RemoteException {
         addStep("打开LetvStore");
-        gotoHomeScreen("应用");
         launchApp(AppName.LeStore, IntentConstants.LeStore);
         try{
             LetvStoreUpdate();
@@ -211,7 +210,6 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
             try{
                 count++;
                 failCount(count,getIntParams("Loop"),e.getMessage());
-                gotoHomeScreen("应用");
                 launchApp(AppName.LeStore, IntentConstants.LeStore);
                 LetvStoreUpdate();
             }
@@ -223,6 +221,12 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
         press_back(3);
     }
     public void LetvStoreUpdate() throws UiObjectNotFoundException, RemoteException {
+        UiObject2 newdata=waitForObj(By.text("立即更新"));
+        if(newdata!=null){
+            clickAndWaitForNewWindow(newdata);
+            newdata.click();
+            sleepInt(60);
+        }
         BySelector upgradeBtnS = By.text(Pattern.compile("升 级|Upgrade"));
         UiObject2 upgradeBtn = phone.findObject(upgradeBtnS);
         if (upgradeBtn != null) {
@@ -231,6 +235,11 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
             sleepInt(60);
             press_right(4);
             sleepInt(10);
+        }
+        UiObject2 stopintall=waitForObj(By.res("com.letv.tvos.appstore:id/downloadTV").text("暂不安装"));
+        if (stopintall!=null){
+            stopintall.click();
+            stopintall.click();
         }
         UiObject2 install = phone.findObject(By.text("一键安装"));
         if (install != null) {
@@ -273,10 +282,27 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
         check("未进入华数TV",cinbapp!=null);
         hushuoapp.click();
         hushuoapp.click();
+
+        UiObject2 hushuodownapp = waitForObj(By.res(Pattern.compile("com.letv.tvos.appstore:id/downloadTV")).text("下载"));
+        if (hushuodownapp!=null) {
+            check("未进入下载", hushuoapp != null);
+            hushuodownapp.click();
+            clickAndWaitForNewWindow(hushuodownapp);
+        }
+        UiObject2 openhushuoapp = waitForObj(By.text(Pattern.compile("打开")));
+        if (hushuodownapp!=null) {
+            check("未进入下载打开", openhushuoapp != null);
+            openhushuoapp.click();
+            clickAndWaitForNewWindow(openhushuoapp);
+        }
+
+        press_down(1);
         UiObject2 agree = waitForObj(By.res("cn.com.wasu.main:id/btn_agree").text("同意"));
         if(agree!=null){
             agree.click();
             agree.click();
+        }else {
+            press_center(1);
         }
         exitApp();
     }
