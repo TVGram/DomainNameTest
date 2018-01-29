@@ -18,7 +18,7 @@ import org.junit.Test;
 
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
-public class DesktopLetvStoreStressDomain extends LetvTestCase {
+public class DesktopLetvStoreDomain extends LetvTestCase {
     int count=0;
 
     @Test
@@ -305,6 +305,7 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
             press_center(1);
         }
         exitApp();
+        press_back(3);
     }
 
 
