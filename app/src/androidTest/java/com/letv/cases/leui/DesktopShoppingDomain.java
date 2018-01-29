@@ -291,37 +291,6 @@ public class DesktopShoppingDomain extends LetvTestCase{
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void AccountLogin() throws UiObjectNotFoundException,RemoteException{
         UiObject2 letvAccount = waitForObj(By.clazz("android.widget.TextView").text(Pattern.compile("帐号.*|帐户: .*|超级电视帐号|会员帐号")));
         check("can't find letvAccount.", letvAccount!=null);

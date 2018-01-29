@@ -282,4 +282,145 @@ public class DesktopLetvStoreStressDomain extends LetvTestCase {
     }
 
 
+    @Test
+    @CaseName("LetvStore应用桌面浏览")
+    public void testLetvStoreDesk() throws UiObjectNotFoundException, RemoteException {
+        addStep("打开LetvStore");
+        gotoHomeScreen("应用");
+        try{
+            LetvStoreDesk();
+        }
+        catch (Exception e){
+            try{
+                count++;
+                failCount(count,getIntParams("Loop"),e.getMessage());
+                gotoHomeScreen("应用");
+            }
+            catch (RuntimeException re){
+                screenShot();
+                Assert.fail(re.getMessage());
+            }
+        }
+        press_back(3);
+    }
+    public void LetvStoreDesk() throws UiObjectNotFoundException, RemoteException {
+
+        press_down(4);
+        for (int i =1;i<5;i++) {
+            UiObject2 music_item = waitForObj(By.res("com.stv.plugin.app:id/music_item_0"+i));
+            check("未进入应用桌面音乐",music_item!=null);
+            music_item.click();
+            music_item.click();
+            sleepInt(5);
+            press_home(1);
+            sleepInt(2);
+            if (i<5) {
+                press_right(2);
+            }
+            else {
+                break;
+            }
+        }
+        UiObject2 music_item_05 = waitForObj(By.res("com.stv.plugin.app:id/music_item_05"));
+        check("未进入应用桌面music_item_05",music_item_05!=null);
+        music_item_05.click();
+        music_item_05.click();
+        sleepInt(5);
+        press_home(1);
+        sleepInt(2);
+        press_back(3);
+        gotoHomeScreen("应用");
+        press_down(1);
+        press_back(3);
+
+
+        press_down(5);
+        for (int i =1;i<5;i++) {
+            UiObject2 health_life_item = waitForObj(By.res("com.stv.plugin.app:id/health_life_item_0"+i));
+            check("未进入应用桌面健康",health_life_item!=null);
+            health_life_item.click();
+            health_life_item.click();
+            sleepInt(5);
+            press_home(1);
+            sleepInt(2);
+            if (i<5) {
+                press_right(2);
+            }
+            else {
+                break;
+            }
+        }
+        UiObject2 health_life_item5 = waitForObj(By.res("com.stv.plugin.app:id/health_life_item_05"));
+        check("未进入应用桌面健康",health_life_item5!=null);
+        health_life_item5.click();
+        health_life_item5.click();
+        sleepInt(5);
+        press_home(1);
+        sleepInt(2);
+        press_back(3);
+        gotoHomeScreen("应用");
+        press_down(1);
+        press_back(3);
+
+
+
+        press_down(6);
+        for (int i =1;i<5;i++) {
+            UiObject2 game_item = waitForObj(By.res("com.stv.plugin.app:id/game_item_0"+i));
+            check("未进入应用桌面game",game_item!=null);
+            game_item.click();
+            game_item.click();
+            sleepInt(5);
+            press_home(1);
+            sleepInt(2);
+            if (i<5) {
+                press_right(2);
+            }
+            else {
+                break;
+            }
+        }
+        UiObject2 game_item_05 = waitForObj(By.res("com.stv.plugin.app:id/game_item_05"));
+        check("未进入应用桌面健康",game_item_05!=null);
+        game_item_05.click();
+        game_item_05.click();
+        sleepInt(5);
+        press_home(1);
+        sleepInt(2);
+        press_back(3);
+        gotoHomeScreen("应用");
+        press_down(1);
+        press_back(3);
+
+
+
+
+
+        press_down(7);
+        for (int i =1;i<3;i++) {
+            UiObject2 recommend_item = waitForObj(By.res("com.stv.plugin.app:id/recommend_item_0"+i));
+            check("未进入应用桌面recommend",recommend_item!=null);
+            recommend_item.click();
+            recommend_item.click();
+            sleepInt(5);
+            press_home(1);
+            sleepInt(2);
+            if (i<5) {
+                press_right(2);
+            }
+            else {
+                break;
+            }
+        }
+        UiObject2 recommend_item3 = waitForObj(By.res("com.stv.plugin.app:id/recommend_item_03"));
+        check("未进入应用桌面recommend",recommend_item3!=null);
+        recommend_item3.click();
+        recommend_item3.click();
+        sleepInt(5);
+        press_home(1);
+        sleepInt(2);
+        press_back(3);
+
+    }
+
 }
