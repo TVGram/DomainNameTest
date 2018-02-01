@@ -181,20 +181,72 @@ public class DesktopGameCentreDomain extends LetvTestCase{
                 Assert.fail(re.getMessage());
             }
         }
+        press_back(3);
     }
     public void GameDeskPoster() throws UiObjectNotFoundException, RemoteException {
         addStep("游戏桌面海报浏览");
+//        for(int i=1;i<=4;i++) {
+//            press_down(1);
+//            UiObject2 GameEntrance = waitForObj(By.res("com.stv.plugin.game:id/entrance_"+i));
+//            check("未进入GameEntrance",GameEntrance!=null);
+//            GameEntrance.click();
+//            GameEntrance.click();
+//            sleepInt(10);
+//            press_home(1);
+//            sleepInt(3);
+//            press_back(3);
+//            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("游戏")).selected(true));
+//            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("游戏")).focused(true));
+//            verify("没有返回到游戏桌面", desktop1 != null || desktop2 != null);
+//        }
+
+
+//        for(int j=1;j<=6;j++) {
+//            press_down(2);
+//            UiObject2 GamePoster = waitForObj(By.res("com.stv.plugin.game:id/poster_"+j));
+//            check("未进入GamePoster",GamePoster!=null);
+//            GamePoster.click();
+//            GamePoster.click();
+//            sleepInt(10);
+//            press_home(1);
+//            sleepInt(3);
+//            press_back(3);
+//            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("游戏")).selected(true));
+//            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("游戏")).focused(true));
+//            verify("没有返回到游戏桌面", desktop1 != null || desktop2 != null);
+//        }
+//
+//        for(int k=1;k<=5;k++) {
+//            press_down(5);
+//            UiObject2 GameWonder = waitForObj(By.res("com.stv.plugin.game:id/wonder_"+k));
+//            check("未进入GameWonder",GameWonder!=null);
+//            GameWonder.click();
+//            GameWonder.click();
+//            sleepInt(10);
+//            press_home(1);
+//            sleepInt(3);
+//            press_back(3);
+//            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("游戏")).selected(true));
+//            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("游戏")).focused(true));
+//            verify("没有返回到游戏桌面", desktop1 != null || desktop2 != null);
+//        }
+
+
         String arrGameDeskSwitch[] = {"猜你喜欢","花式抽卡，欧气满满.*","与您一起，见证宝贝的点滴成长", "畅销榜", "大屏格斗更激爽！", "飙升榜","德州麻将斗地主，象棋斗牛赢三张","感受枪林弹雨的超神快感","热门榜","休闲益智"};
         for (int i = 0; i < arrGameDeskSwitch.length; i++) {
-            press_back(2);
+            press_back(3);
             press_down(6 + i);
             addStep("进入到" + arrGameDeskSwitch[i] + "切换3次");
-            int GameDesk = phone.findObject(By.text(Pattern.compile(arrGameDeskSwitch[i]))).getParent().getChildCount()+3;
+            int GameDesk = phone.findObject(By.text(Pattern.compile(arrGameDeskSwitch[i]))).getParent().getChildCount();
             check("未进入" + arrGameDeskSwitch[i], GameDesk != 0);
-            press_right(GameDesk);
-            press_left(GameDesk);
+            for (int k=0;k<4;k++) {
+                press_right(GameDesk);
+                press_center(1);
+                sleepInt(10);
+                press_home(1);
+                sleepInt(3);
+            }
         }
-        press_back(3);
     }
 
     @Test
