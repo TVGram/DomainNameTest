@@ -154,6 +154,9 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
         desktop();
         press_back(3);
     }
+
+
+
     @Test
     @CaseName("进入儿童桌面海报浏览")
     public void testChildDesktopPoster() throws UiObjectNotFoundException, RemoteException {
@@ -179,22 +182,162 @@ public class DesktopLeChildStressDomain extends LetvTestCase {
     }
     public void ChildDesktopDesktopPoster() throws UiObjectNotFoundException, RemoteException {
         addStep("进入儿童桌面海报浏览");
-        press_down(4);
-        for (int i =0;i<5;i++){
-            sleepInt(2);
-
+        for(int j=1;j<=5;j++) {
             press_down(1);
-            press_right(3);
-
-
-            press_center(1);
-            press_back(2);
-
-            press_left(3);
+            UiObject2 childposter = waitForObj(By.res("com.stv.plugin.kids:id/poster_"+j));
+            check("未进入childposter",childposter!=null);
+            childposter.click();
+            childposter.click();
+            sleepInt(10);
+            press_home(1);
+            sleepInt(3);
+            press_back(3);
             UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
             UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
             verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
         }
+
+        for(int k=1;k<=2;k++) {
+            press_down(2);
+            UiObject2 childphistory = waitForObj(By.res("com.stv.plugin.kids:id/history_"+k));
+            check("未进入history",childphistory!=null);
+            childphistory.click();
+            childphistory.click();
+            sleepInt(10);
+            press_home(1);
+            sleepInt(3);
+            press_back(3);
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
+            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        }
+
+        for(int l=1;l<=5;l++) {
+            press_down(3);
+            UiObject2 entrance = waitForObj(By.res("com.stv.plugin.kids:id/entrance_"+l));
+            check("未进入entrance",entrance!=null);
+            entrance.click();
+            entrance.click();
+            sleepInt(10);
+            press_home(1);
+            sleepInt(3);
+            press_back(3);
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
+            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        }
+
+        for(int h=1;h<=4;h++) {
+            press_down(4);
+            UiObject2 childstars = waitForObj(By.res("com.stv.plugin.kids:id/stars_"+h));
+            check("未进入childstars",childstars!=null);
+            childstars.click();
+            childstars.click();
+            sleepInt(10);
+            press_home(1);
+            sleepInt(3);
+            press_back(3);
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
+            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        }
+
+        for(int g=1;g<=5;g++) {
+            press_down(5);
+            UiObject2 childwonder = waitForObj(By.res("com.stv.plugin.kids:id/wonder_"+g));
+            check("未进入TV幼儿园",childwonder!=null);
+            childwonder.click();
+            childwonder.click();
+            sleepInt(10);
+            press_home(1);
+            sleepInt(3);
+            press_back(3);
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
+            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        }
+
+        for(int f=1;f<=3;f++) {
+            press_down(6);
+            UiObject2 childcommon = waitForObj(By.res("com.stv.plugin.kids:id/common_"+f));
+            check("未进入宝宝最爱内容",childcommon!=null);
+            childcommon.click();
+            childcommon.click();
+            sleepInt(10);
+            press_home(1);
+            sleepInt(3);
+            press_back(3);
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
+            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        }
+
+        for(int f=1;f<=3;f++) {
+            press_down(7);
+            UiObject2 childcommon = waitForObj(By.res("com.stv.plugin.kids:id/common_"+f));
+            check("未进入新片速递抢先看",childcommon!=null);
+            childcommon.click();
+            childcommon.click();
+            sleepInt(10);
+            press_home(1);
+            sleepInt(3);
+            press_back(3);
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
+            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        }
+
+
+        for(int d=8;d<=30;d++) {
+
+            press_down(d);
+            press_center(1);
+            sleepInt(10);
+            press_home(1);
+            press_right(1);
+            sleepInt(2);
+
+            press_center(1);
+            sleepInt(10);
+            press_home(1);
+            press_right(1);
+            sleepInt(2);
+
+            press_center(1);
+            sleepInt(10);
+            press_home(1);
+            press_right(1);
+            sleepInt(2);
+
+            press_center(1);
+            sleepInt(10);
+            press_home(1);
+
+            sleepInt(3);
+            press_back(3);
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
+            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        }
+
+
+
+//        press_down(4);
+//        for (int i =0;i<5;i++){
+//            sleepInt(2);
+//
+//            press_down(1);
+//            press_right(3);
+//
+//
+//            press_center(1);
+//            press_back(2);
+//
+//            press_left(3);
+//            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).selected(true));
+//            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("儿童")).focused(true));
+//            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+//        }
     }
 
 

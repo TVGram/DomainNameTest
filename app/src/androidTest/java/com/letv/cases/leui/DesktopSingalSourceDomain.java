@@ -1,8 +1,5 @@
 package com.letv.cases.leui;
 
-/**
- * Created by zhoujine on 2016/4/30.
- */
 
 import android.os.Build;
 import android.os.RemoteException;
@@ -17,7 +14,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 
-public class DesktipSingalSourceDomain extends LetvTestCase {
+public class DesktopSingalSourceDomain extends LetvTestCase {
     int count = 0;
 
     @Test
