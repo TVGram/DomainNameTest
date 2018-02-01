@@ -274,23 +274,6 @@ public class DesktopLeVideoDomain extends LetvTestCase {
         press_back(3);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void desktopVodplay()throws UiObjectNotFoundException, RemoteException{
         UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).selected(true));
         UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).focused(true));
