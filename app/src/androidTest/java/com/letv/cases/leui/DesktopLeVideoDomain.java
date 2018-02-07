@@ -194,10 +194,28 @@ public class DesktopLeVideoDomain extends LetvTestCase {
     public void LePosters() throws UiObjectNotFoundException , RemoteException {
         addStep("进入视频桌面海报浏览");
         press_down(1);
+        sleepInt(2);
         press_center(1);
         sleepInt(3);
-        exitApp();
+        press_home(1);
         press_back(3);
+
+        for(int k=1;k<=6;k++) {
+            press_down(2);
+            sleepInt(2);
+            UiObject2 poster_small=waitForObj(By.res("com.stv.plugin.video:id/poster_small_"+k));
+            check("未进入poster_small",poster_small!=null);
+            poster_small.click();
+            poster_small.click();
+            sleepInt(10);
+            press_home(1);
+            sleepInt(3);
+            press_back(3);
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).focused(true));
+            verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+        }
+
         for(int j=0;j<8;j++) {
             for (int i = 0; i < 3; i++) {
                 press_down(4+j);

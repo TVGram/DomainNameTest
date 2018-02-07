@@ -26,18 +26,14 @@ public class APPShopingDomain  extends LetvTestCase {
     @Test
     @CaseName("进入购物应用浏览海报")
     public void testApplicationLeShop()throws UiObjectNotFoundException,RemoteException {
-        gotoHomeScreen("应用");
-        launchApp(AppName.Shop, IntentConstants.Shop);
-        addStep("进入应用购物");
-        AccountLogin();
-//        appshopTV();
             try {
+                addStep("进入应用购物");
+                appshopTV();
                 ApplicationLeShop();
             } catch (Exception e) {
                 try {
                     count++;
                     failCount(count, getIntParams("Loop"), e.getMessage());
-                    gotoHomeScreen("应用");
                     appshopTV();
                     ApplicationLeShop();
                 } catch (RuntimeException re) {
@@ -55,7 +51,7 @@ public class APPShopingDomain  extends LetvTestCase {
 //        sleepInt(1);
 //        press_back(1);
 
-        String arr[] = {"首页", "家用电器", "个护美妆", "家居百货","食品茶酒","生活服务","母婴玩具","运动户外","女装/男装","文化创意","鞋包配饰"};
+        String arr[] = {"首页", "家用电器", "家居百货","食品茶酒","鞋包配饰","个护美妆", "母婴玩具","生活服务","运动户外","文化创意"};
         for (int j = 0; j < arr.length; j++) {
             addStep("进入全部商品进入遍历");
             UiObject2 allList = phone.findObject(By.text(arr[j]));
@@ -66,10 +62,13 @@ public class APPShopingDomain  extends LetvTestCase {
                 press_right(6);
                 press_left(5);
             }
-            press_down(5);
-            sleepInt(1);
-            press_back(1);
-            sleepInt(2);
+            for(int i =0;i<5;i++) {
+                press_down(1);
+                press_center(1);
+                sleepInt(5);
+                press_back(1);
+                sleepInt(3);
+            }
         }
 
     }
@@ -80,9 +79,10 @@ public class APPShopingDomain  extends LetvTestCase {
         gotoHomeScreen("应用");
         retry();
         press_down(2);
-        UiObject2 appshopTV=waitForObj(By.res("com.stv.plugin.app:id/cellview_label").text("购物"));
-        check("未进入儿童TV",appshopTV!=null);
-        clickAndWaitForNewWindow(appshopTV);
+        UiObject2 appshopTV=waitForObj(By.res(Pattern.compile("com.stv.plugin.app:id/poster_cellview_label|com.stv.plugin.app:id/cellview_label")).text("购物"));
+        check("未进入购物",appshopTV!=null);
+        appshopTV.click();
+        appshopTV.click();
         sleepInt(2);
     }
 

@@ -85,6 +85,25 @@ public class DesktopLiveDomain extends LetvTestCase{
     @Test
     @CaseName("Live桌面节目单选择进行点播")
     public void testDesktopLiveProgramme() throws UiObjectNotFoundException, RemoteException {
+        addStep("切换到live桌面");
+        gotoHomeScreen("首页");
+        sleepInt(2);
+        try {
+            DesktopLiveProgramme();
+        } catch (Exception e) {
+            try {
+                count++;
+                failCount(count, getIntParams("Loop"), e.getMessage());
+                DesktopLiveProgramme();
+            } catch (RuntimeException re) {
+                screenShot();
+                junit.framework.Assert.fail(re.getMessage());
+            }
+            press_back(2);
+
+        }
+    }
+    public void DesktopLiveProgramme() throws UiObjectNotFoundException, RemoteException {
         addStep("进入Live");
         gotoHomeScreen("首页");
         sleepInt(6);
@@ -148,13 +167,6 @@ public class DesktopLiveDomain extends LetvTestCase{
             addStep("返回全屏播放");
             press_back(1);
         }
-
-
-
-
-
-
-
 
 
 
