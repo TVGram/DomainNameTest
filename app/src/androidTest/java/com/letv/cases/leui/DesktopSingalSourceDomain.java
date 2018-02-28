@@ -46,13 +46,17 @@ public class DesktopSingalSourceDomain extends LetvTestCase {
     public void SignalsourcelHot() throws UiObjectNotFoundException,RemoteException {
         addStep("信号源桌面热门推荐");
         press_down(2);
-        UiObject2 hot_item1=waitForObj(By.res("com.stv.signalsourcemanager:id/hot_item1"));
-        check("未进入热门推荐",hot_item1!=null);
-        press_right(2);
-        press_down(1);
-        press_left(1);
-        press_center(1);
-        sleepInt(5);
+        for (int i=1;i<=7;i++) {
+        UiObject2 hot_item = waitForObj(By.res("com.stv.signalsourcemanager:id/hot_item"+i));
+        check("未进入热门推荐", hot_item != null);
+            hot_item.click();
+            hot_item.click();
+            sleepInt(10);
+            press_home(1);
+            press_left(1);
+            press_down(1);
+            sleepInt(2);
+        }
     }
 
     @Test
@@ -61,7 +65,7 @@ public class DesktopSingalSourceDomain extends LetvTestCase {
         addStep("切换到信号源桌面");
         gotoHomeScreen("首页");
         press_left(2);
-        press_back(3);
+        press_back(2);
         try {
             SignalsourcelWonderful();
         } catch (Exception e) {
@@ -82,15 +86,28 @@ public class DesktopSingalSourceDomain extends LetvTestCase {
         }
     }
     public void SignalsourcelWonderful() throws UiObjectNotFoundException,RemoteException {
-        addStep("信号源桌面精彩推荐");
+        addStep("信号源桌面热门推荐");
         press_down(3);
-        UiObject2 recommend_iv=waitForObj(By.res("com.stv.signalsourcemanager:id/recommend_iv"));
-        check("未进入热门推荐",recommend_iv!=null);
-        press_right(2);
-        press_down(1);
-        press_left(2);
-        press_center(1);
-        sleepInt(5);
+        for (int i=1;i<=7;i++) {
+            if(i<=4){
+                press_right(i-1);
+                press_center(1);
+            }
+            else {
+                press_down(1);
+                press_right(i-4);
+                press_center(1);
+            }
+//            UiObject2 hot_item = waitForObj(By.res("com.stv.signalsourcemanager:id/hot_item"+i));
+//            check("未进入热门推荐", hot_item != null);
+//            hot_item.click();
+//            hot_item.click();
+            sleepInt(10);
+            press_home(1);
+            press_left(1);
+            press_down(2);
+            sleepInt(2);
+        }
     }
 
     @Test
