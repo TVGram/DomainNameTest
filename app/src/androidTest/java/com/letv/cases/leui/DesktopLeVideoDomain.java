@@ -130,7 +130,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
                 try {
                     count ++;
                     failCount(count, getIntParams("Loop"), e.getMessage());
-                    gotoHomeScreen("乐见|视频");
+                    gotoHomeScreen("找视频|乐见");
                     press_down(1);
                     UiObject2 poster2=waitForObj(By.res("com.stv.plugin.video:id/poster_small_1"));
                     check("视频桌面没有找到海报", poster2 != null);
@@ -182,7 +182,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
             try {
                 count ++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
-                gotoHomeScreen("乐见|视频");
+                gotoHomeScreen("找视频|乐见");
                 LePosters();
             }catch (RuntimeException re){
                 screenShot();
@@ -211,9 +211,10 @@ public class DesktopLeVideoDomain extends LetvTestCase {
             press_home(1);
             sleepInt(3);
             press_back(3);
-            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).selected(true));
-            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).focused(true));
+            UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("找视频|乐见")).selected(true));
+            UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("找视频|乐见")).focused(true));
             verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
+//            press_down(1);
         }
 
         for(int j=0;j<8;j++) {
@@ -240,7 +241,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
             try {
                 count ++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
-                gotoHomeScreen("乐见|视频");
+                gotoHomeScreen("找视频|乐见");
                 LeVideoSearch();
             }catch (RuntimeException re){
                 screenShot();
@@ -272,7 +273,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
             try {
                 count ++;
                 failCount(count, getIntParams("Loop"), e.getMessage());
-                gotoHomeScreen("乐见|视频");
+                gotoHomeScreen("找视频|乐见");
                 LeVideoClassification();
             }catch (RuntimeException re){
                 screenShot();
@@ -293,10 +294,44 @@ public class DesktopLeVideoDomain extends LetvTestCase {
     }
 
     public void desktopVodplay()throws UiObjectNotFoundException, RemoteException{
-        UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).selected(true));
-        UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("乐见")).focused(true));
+        UiObject2 desktop1=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("找视频|乐见")).selected(true));
+        UiObject2 desktop2=phone.findObject(By.pkg("com.stv.launcher").text(Pattern.compile("找视频|乐见")).focused(true));
         verify("没有返回到视频桌面", desktop1 != null || desktop2 != null);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
