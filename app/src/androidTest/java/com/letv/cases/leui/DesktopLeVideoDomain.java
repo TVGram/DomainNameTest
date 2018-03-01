@@ -101,7 +101,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
         sleepInt(2);
         for(int j=0;j<3;j++) {
             sleepInt(2);
-            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text("乐见")).getParent();
+            UiObject2 launchLeVideo = waitForObj(By.res("com.stv.launcher:id/tv_title").text(Pattern.compile("乐见"))).getParent();
             if(launchLeVideo.isFocused()){
                 press_center(1);
                 press_up(1);
@@ -121,7 +121,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
     @Test
     @CaseName("视频桌面播放视频")
     public void testDesktopLeVideoPlay() throws UiObjectNotFoundException , RemoteException {
-        gotoHomeScreen("乐见");
+        gotoHomeScreen("找视频|乐见");
         press_back(3);
         press_down(1);
             try {
@@ -174,7 +174,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
     @Test
     @CaseName("进入视频桌面海报浏览")
     public void testDesktopLePosters() throws UiObjectNotFoundException , RemoteException {
-        gotoHomeScreen("乐见");
+        gotoHomeScreen("找视频|乐见");
         press_back(3);
         try {
             LePosters();
@@ -232,7 +232,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
     @Test
     @CaseName("视频桌面搜索")
     public void testDesktopLeVideoSearch() throws UiObjectNotFoundException , RemoteException {
-        gotoHomeScreen("乐见");
+        gotoHomeScreen("找视频|乐见");
         press_back(3);
         try {
             LeVideoSearch();
@@ -264,7 +264,7 @@ public class DesktopLeVideoDomain extends LetvTestCase {
     @Test
     @CaseName("视频桌面视频分类")
     public void testDeskLeVideoClassification() throws UiObjectNotFoundException , RemoteException {
-        gotoHomeScreen("乐见");
+        gotoHomeScreen("找视频|乐见");
         press_back(3);
         try {
             LeVideoClassification();
@@ -301,23 +301,8 @@ public class DesktopLeVideoDomain extends LetvTestCase {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void initClarity() throws UiObjectNotFoundException , RemoteException {
-        gotoHomeScreen("视频|乐见");
+        gotoHomeScreen("找视频|乐见");
         sleepInt(5);
         press_down(2);
         checkAccountLogin();
